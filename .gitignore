@@ -1,0 +1,37 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# JVM
+build/
+.gradle/
+*.class
+*.jar
+!gradle-wrapper.jar
+.kotlin/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+dist/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
