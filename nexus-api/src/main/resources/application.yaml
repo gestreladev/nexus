@@ -8,3 +8,8 @@ ktor:
 nexus:
   version: "0.1.0"
   environment: "development"
+  db:
+    url: "jdbc:postgresql://localhost:5433/nexus"
+    user: "nexus"
+    password: "nexus"
+    maxPoolSize: 10

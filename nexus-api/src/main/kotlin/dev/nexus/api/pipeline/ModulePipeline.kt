@@ -1,5 +1,7 @@
 package dev.nexus.api.pipeline
 
+import dev.nexus.api.database.DatabaseConfig
+import dev.nexus.api.database.DatabaseFactory
 import dev.nexus.api.plugins.configureRouting
 import dev.nexus.api.plugins.configureSerialization
 import dev.nexus.api.plugins.configureStatusPages
@@ -8,11 +10,6 @@ import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.request.*
 import org.slf4j.event.Level
 
-/**
- * Marks all DSL receivers in the module pipeline.
- * Prevents implicit receiver leakage — inside a nested block (e.g. logging { })
- * you cannot accidentally call sibling stages like serialization() or routing().
- */
 @DslMarker
 annotation class NexusDsl
 
@@ -22,7 +19,7 @@ class ModulePipeline internal constructor(private val app: Application) {
     private val configured = mutableSetOf<Stage>()
     private val chain = ArrayDeque<Application.() -> Unit>()
 
-    enum class Stage { LOGGING, SERIALIZATION, STATUS_PAGES, ROUTING }
+    enum class Stage { LOGGING, SERIALIZATION, STATUS_PAGES, DATABASE, ROUTING }
 
     fun logging(block: CallLoggingConfig.() -> Unit = {}) =
         register(Stage.LOGGING) {
@@ -42,6 +39,21 @@ class ModulePipeline internal constructor(private val app: Application) {
         requireStage(Stage.SERIALIZATION, current = Stage.STATUS_PAGES)
         register(Stage.STATUS_PAGES) {
             configureStatusPages()
+        }
+    }
+
+    fun database() {
+        register(Stage.DATABASE) {
+            val config = environment.config
+            DatabaseFactory.init(
+                DatabaseConfig(
+                    url = config.property("nexus.db.url").getString(),
+                    user = config.property("nexus.db.user").getString(),
+                    password = config.property("nexus.db.password").getString(),
+                    maxPoolSize = config.propertyOrNull("nexus.db.maxPoolSize")
+                        ?.getString()?.toInt() ?: 10,
+                )
+            )
         }
     }
 
