@@ -15,14 +15,14 @@ deployable release of the complete Nexus system.
 
 ## Current version
 
-`0.2.0-dev` — Database layer in progress (`feat/phase-2-database`)
+`0.2.0` — released
 
 ## Version history
 
 | Version | Status | Milestone | Summary |
 |---|---|---|---|
 | `v0.1.0` | ✅ released | First Service | Ktor scaffold, health endpoint, ModulePipeline DSL |
-| `v0.2.0` | 🔄 in progress | Database Layer | PostgreSQL, Flyway, Exposed, HikariCP |
+| `v0.2.0` | ✅ released | Database Layer | PostgreSQL, Flyway, Exposed, HikariCP |
 
 ## Release process
 
