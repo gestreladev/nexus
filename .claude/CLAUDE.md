@@ -13,12 +13,13 @@
 | **GitHub account** | `gestreladev` (SSH host alias: `github-gestreladev`) |
 | **Git remote** | `git@github-gestreladev:gestreladev/nexus.git` |
 | **Current version** | `0.2.0-dev` |
+| **Active branch** | `feat/phase-2-database` → PR #2 (open) |
 
 ### Services
 
 | Service | Path | Language | Framework | Port | Status |
 |---|---|---|---|---|---|
-| `nexus-api` | `nexus-api/` | Kotlin 2.1.21 | Ktor 3.1.3 / Netty | 8080 | ✅ v0.1.0 |
+| `nexus-api` | `nexus-api/` | Kotlin 2.1.21 | Ktor 3.1.3 / Netty | 8080 | 🔄 v0.2.0-dev |
 | `nexus-ingest` | `nexus-ingest/` | Python 3.12+ | FastAPI | 8081 | ⏳ v0.6.0 |
 | `nexus-search` | `nexus-search/` | Python 3.12+ | FastAPI | 8082 | ⏳ v0.11.0 |
 
@@ -30,15 +31,32 @@
 | Cache | Redis 7 | ⏳ v0.4.0 |
 | Messaging | Kafka | ⏳ v0.7.0 |
 | Observability | OpenTelemetry + Grafana | ⏳ v0.10.0 |
-| Container | Docker Compose | ✅ partial |
+| Container | Docker Compose (`docker-compose.yml` at repo root) | ✅ partial |
 
-### Build tooling
+### Build tooling — nexus-api
 
-| Tool | Version | Scope |
-|---|---|---|
-| Gradle wrapper | 8.13 | `nexus-api` |
-| JDK | OpenJDK 17 (Temurin) | JVM runtime |
-| Version catalog | `gradle/libs.versions.toml` | All JVM deps |
+| Tool | Version |
+|---|---|
+| Gradle wrapper | 8.13 |
+| JDK | OpenJDK 17 (Temurin) |
+| Kotlin | 2.1.21 |
+| Ktor | 3.1.3 |
+| Exposed | 0.61.0 |
+| HikariCP | 6.3.0 |
+| PostgreSQL driver | 42.7.5 |
+| Flyway | 11.8.2 |
+| Logback | 1.5.18 |
+
+### GitHub labels
+
+| Group | Labels |
+|---|---|
+| `type:*` | `feat` `fix` `refactor` `chore` `docs` `test` `lesson` |
+| `service:*` | `nexus-api` `nexus-ingest` `nexus-search` `infra` `claude` |
+| `status:*` | `wip` `blocked` `needs-review` |
+| `priority:*` | `high` `low` |
+
+Every PR must have at least one `type:*` label and a milestone assigned.
 
 ### Conventions
 
