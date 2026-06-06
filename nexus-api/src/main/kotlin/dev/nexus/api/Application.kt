@@ -9,5 +9,6 @@ fun Application.module() = nexusModule {
     logging()
     serialization()
     statusPages()
+    database()
     routing()
 }
