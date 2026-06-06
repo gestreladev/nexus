@@ -81,8 +81,31 @@ or file structure — **stop and ask**. Never assume.
 
 ## Knowledge Index
 
+### Architecture
 | File | Load when… |
 |---|---|
+| `architecture/layers.md` | Deciding where new code goes, reviewing layer violations, onboarding |
 | `architecture/designpatterns/chain_of_responsibility.md` | Handler chain, pipeline, middleware, ordered processing |
+| `architecture/designpatterns/repository.md` | Writing or reviewing repositories, transaction boundaries, domain isolation |
+
+### API
+| File | Load when… |
+|---|---|
+| `api/conventions.md` | Designing or reviewing any HTTP endpoint, status codes, response shapes |
+
+### Idioms
+| File | Load when… |
+|---|---|
 | `idioms/dsl.md` | Kotlin DSL, `@DslMarker`, builder patterns, extension-function APIs |
-| `git/versioning.md` | Version bumps, release process, changelog, git tags, milestone planning |
+| `idioms/exposed-dsl.md` | Writing Exposed tables, queries, ResultRow mappers, transactions |
+
+### Testing
+| File | Load when… |
+|---|---|
+| `testing/strategy.md` | Writing any test — route, repository, or unit; fake vs mock decisions |
+
+### Git
+| File | Load when… |
+|---|---|
+| `git/branching.md` | Creating branches, naming PRs, commit messages, merge strategy |
+| `git/versioning.md` | Version bumps, release process, changelog, git tags, milestones |
