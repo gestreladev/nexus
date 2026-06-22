@@ -1,3 +1,18 @@
+---
+name: layers
+description: The 4-layer map of nexus-api, dependency rules, and where new code belongs.
+agent:
+  role: ktor-specialist
+  tier: standard
+  weight: medium
+  triggers:
+    - deciding which layer new code goes in
+    - reviewing a dependency-direction violation
+    - onboarding to nexus-api structure
+metadata:
+  type: reference
+---
+
 # Architecture Layers
 
 ## Layer map
@@ -62,3 +77,7 @@ dev.nexus.api/
 │   └── document/   DocumentTable.kt  DocumentRepository.kt  Document.kt
 └── database/       DatabaseFactory.kt  DatabaseConfig.kt
 ```
+
+## References
+- [architecture_orchestrator.md](architecture_orchestrator.md) · `[[architecture_orchestrator]]`
+- [repository.md](repository.md) · `[[repository]]`

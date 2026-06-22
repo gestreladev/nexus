@@ -1,17 +1,29 @@
-# Branching Strategy
+---
+name: branching
+description: Branch naming, strategy, and protection rules for Nexus.
+agent:
+  role: git-workflow-specialist
+  tier: nano
+  weight: soft
+  triggers:
+    - naming a branch
+    - checking branch conventions or protection rules
+metadata:
+  type: reference
+---
 
-## Model
+# Branching — Nexus
 
-Nexus uses a simplified **GitHub Flow**:
-- `main` is always deployable and protected
-- All work happens on short-lived branches
-- Every branch merges via PR — no direct pushes to `main`
+Simplified **GitHub Flow**: `main` is always deployable and protected; all work
+happens on short-lived branches merged via PR.
 
 ```
 main ──────────────●──────────────●──────────
                   ↑               ↑
            feat/phase-2     fix/health-timeout
 ```
+
+---
 
 ## Branch naming
 
@@ -31,50 +43,27 @@ main ──────────────●──────────
 Examples:
 ```
 feat/phase-2-database
-feat/user-create-endpoint
 fix/health-endpoint-500
 chore/bump-ktor-3.2
 refactor/pipeline-error-handling
 ```
 
-Keep descriptions lowercase and hyphenated. No ticket numbers in branch
-names — milestones and labels on GitHub carry that context.
+Lowercase, hyphenated. No ticket numbers — milestones and labels carry context.
 
-## PR rules
+---
 
-1. **One concern per PR.** A PR that adds auth AND fixes a bug is two PRs.
-2. **Title follows Conventional Commits** — same format as commits:
-   `feat(nexus-api): add user creation endpoint`
-3. **Every PR must have** a milestone and at least one `type:*` label.
-4. **Squash merge** into `main` — keeps history linear and readable.
+## Rules
 
-## Commit convention
+1. Always branch from `main`.
+2. One concern per branch — do not mix unrelated changes.
+3. Branches are deleted after merge.
 
-```
-{type}({scope}): {description}
+## Protection on `main`
+- Force pushes: blocked
+- Deletions: blocked
+- PR required before merge
 
-{optional body}
-
-Co-Authored-By: …
-```
-
-Types: `feat` `fix` `refactor` `chore` `docs` `test`  
-Scope: service or area (`nexus-api`, `nexus-ingest`, `infra`, `claude`, `deps`)
-
-```
-feat(nexus-api): add POST /v1/users endpoint
-fix(nexus-api): handle duplicate email as 409 not 500
-chore(deps): bump exposed to 0.62.0
-docs(claude): add api/conventions.md
-```
-
-## Protection rules on `main`
-
-- Force pushes: **blocked**
-- Deletions: **blocked**
-- PRs require at least one review (self-review counts for solo learning project)
-
-## Release tags
-
-Created on `main` after milestone PRs are merged.  
-See `git/versioning.md` for full release process.
+## References
+- [git_orchestrator.md](git_orchestrator.md) · `[[git_orchestrator]]`
+- [commits.md](commits.md) · `[[commits]]`
+- [pull_requests.md](pull_requests.md) · `[[pull_requests]]`
