@@ -48,7 +48,8 @@ the last completed lesson and any open gaps, then consult
 | 2 | 1 | First Service: web servers, REST, OpenAPI | [lesson_02_first_service.md](log/lesson_02_first_service.md) · `[[lesson_02_first_service]]` | ✅ |
 | 3 | 2 | Data Layer: PostgreSQL, ACID, migrations, ORM | [lesson_03_database.md](log/lesson_03_database.md) · `[[lesson_03_database]]` | ✅ |
 | 4 | 3 | Auth & Security: bcrypt, JWT, OWASP | [lesson_04_auth.md](log/lesson_04_auth.md) · `[[lesson_04_auth]]` | ✅ |
-| 5 | 4 | Caching: Redis, cache-aside, invalidation | _next_ | ⏭️ |
+| 5 | 4 | Caching: Redis, cache-aside, JWT denylist | [lesson_05_caching.md](log/lesson_05_caching.md) · `[[lesson_05_caching]]` | ✅ |
+| 6 | 5 | Testing & CI/CD | _next_ | ⏭️ |
 
 ---
 

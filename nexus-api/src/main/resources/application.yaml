@@ -20,3 +20,6 @@ nexus:
     audience: "nexus-api"
     realm: "nexus"
     expiresInMinutes: 60
+  redis:
+    # Dev default; production overrides via the REDIS_URL env var.
+    url: "redis://localhost:6379"

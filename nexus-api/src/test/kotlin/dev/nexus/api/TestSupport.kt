@@ -19,4 +19,5 @@ fun testConfig() = MapApplicationConfig(
     "nexus.jwt.audience" to "nexus-api",
     "nexus.jwt.realm" to "nexus",
     "nexus.jwt.expiresInMinutes" to "60",
+    "nexus.redis.url" to "redis://localhost:6379",
 )

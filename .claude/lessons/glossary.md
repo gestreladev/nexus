@@ -56,5 +56,16 @@ Concepts introduced in lessons, newest phase last. Grows each lesson.
 
 ---
 
+## Phase 4 — Caching
+- **Cache-aside** — check cache; on miss load source, populate, return.
+- **Invalidation** — bounding staleness; prefer delete-on-write + TTL.
+- **TTL** — per-key expiry (freshness); **eviction** — capacity policy under maxmemory.
+- **Cache stampede** — hot key expiry → herd of misses; fix with single-flight/jitter.
+- **Redis** — in-memory KV store; `SET key v EX ttl`, `EXISTS`, RDB/AOF.
+- **HTTP caching** — Cache-Control / ETag / 304 at the edge.
+- **JWT denylist** — Redis set of revoked `jti`s (TTL = token life) → real revocation.
+
+---
+
 ## References
 - [lesson_orchestrator.md](lesson_orchestrator.md) · `[[lesson_orchestrator]]`

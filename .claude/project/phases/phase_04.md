@@ -15,16 +15,17 @@ metadata:
 
 | Field | Value |
 |---|---|
-| Version | `v0.4.0` ⏳ |
+| Version | `v0.4.0` 🔄 in progress |
 | Lesson | 5 |
 | Topics | caching, redis, memcached, nosql-databases, http-caching |
-| Status | ⏳ planned |
+| Status | 🔄 cache layer + denylist shipped; HTTP headers pending |
 
-## Planned deliverables
-- [ ] Redis in Docker Compose
-- [ ] Cache layer in `nexus-api` (decorator over a repository)
-- [ ] Cache-aside pattern + invalidation strategy
-- [ ] HTTP caching headers where appropriate
+## Deliverables
+- [x] Redis (`redis:7-alpine`) in Docker Compose (AOF, healthcheck)
+- [x] Cache abstraction (`Cache`/`RedisCache`, Lettuce) + `redis()` pipeline stage
+- [x] Cache-aside on `GET /v1/auth/me` (`cache:user:{id}`, TTL 300s)
+- [x] **JWT denylist** + `POST /v1/auth/logout` (closes Lesson 4 E5)
+- [ ] HTTP caching headers (Cache-Control/ETag) — when public read endpoints exist
 
 ## References
 - [roadmap.md](../roadmap.md) · `[[roadmap]]`

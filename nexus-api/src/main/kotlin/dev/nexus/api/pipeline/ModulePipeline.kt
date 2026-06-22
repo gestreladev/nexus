@@ -1,5 +1,7 @@
 package dev.nexus.api.pipeline
 
+import dev.nexus.api.cache.CacheConfig
+import dev.nexus.api.cache.RedisFactory
 import dev.nexus.api.database.DatabaseConfig
 import dev.nexus.api.database.DatabaseFactory
 import dev.nexus.api.plugins.configureRouting
@@ -20,7 +22,7 @@ class ModulePipeline internal constructor(private val app: Application) {
     private val configured = mutableSetOf<Stage>()
     private val chain = ArrayDeque<Application.() -> Unit>()
 
-    enum class Stage { LOGGING, SERIALIZATION, STATUS_PAGES, DATABASE, AUTHENTICATION, ROUTING }
+    enum class Stage { LOGGING, SERIALIZATION, STATUS_PAGES, DATABASE, REDIS, AUTHENTICATION, ROUTING }
 
     fun logging(block: CallLoggingConfig.() -> Unit = {}) =
         register(Stage.LOGGING) {
@@ -58,7 +60,15 @@ class ModulePipeline internal constructor(private val app: Application) {
         }
     }
 
+    fun redis() {
+        register(Stage.REDIS) {
+            RedisFactory.init(CacheConfig.from(environment.config))
+        }
+    }
+
     fun authentication() {
+        // Auth's denylist check reads the shared cache, so Redis must init first.
+        requireStage(Stage.REDIS, current = Stage.AUTHENTICATION)
         register(Stage.AUTHENTICATION) {
             configureSecurity()
         }

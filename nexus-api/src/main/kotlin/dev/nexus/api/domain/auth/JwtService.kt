@@ -37,6 +37,7 @@ class JwtService(private val cfg: JwtConfig) {
             .withIssuer(cfg.issuer)
             .withAudience(cfg.audience)
             .withSubject(userId.toString())
+            .withJWTId(UUID.randomUUID().toString())   // jti — enables denylist revocation
             .withClaim("email", email)
             .withIssuedAt(Date())
             .withExpiresAt(Date(System.currentTimeMillis() + cfg.expiresInMinutes * 60_000))

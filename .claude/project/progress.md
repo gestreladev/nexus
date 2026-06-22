@@ -21,10 +21,10 @@ metadata:
 | Field | Value |
 |---|---|
 | Released | `v0.3.0` (Auth & Security) ✅ tagged |
-| Last lesson | **Lesson 4 — Auth & Security** ✅ (see log) |
-| Next lesson | **Lesson 5 — Caching** (Phase 4 → `v0.4.0`) |
-| Active branch | `feat/phase-3-auth` (auth layer, tests green) |
-| Open gaps | E5 JWT staleness/revocation — taught; confirm at Lesson 5 recap |
+| Last lesson | **Lesson 5 — Caching** ✅ (see log) |
+| Next lesson | **Lesson 6 — Testing & CI/CD** (Phase 5 → `v0.5.0`) |
+| Active branch | `feat/phase-4-caching` (Redis cache + denylist, tests green) |
+| Open gaps | E5 ✅ closed (Redis denylist); HTTP cache headers pending public reads |
 
 ## Done
 - ✅ Phase 0 — repo, structure, conventions
@@ -32,11 +32,13 @@ metadata:
 - ✅ Phase 2 — PostgreSQL data layer, Flyway, Exposed, partial index (`v0.2.0`)
 - ✅ Phase 3 — auth layer: bcrypt + JWT, register/login/me, `authentication()`
   pipeline stage, 5 integration tests (`v0.3.0`)
-- ✅ Tooling — `.claude` vault (fundamentals, languages, lessons, project), GoF
-  Kotlin tree, PR templates, labels, milestones
+- 🔄 Phase 4 — Redis cache-aside (`/me`) + JWT denylist (`logout`); Redis in
+  compose; Lettuce client (`v0.4.0`, HTTP cache headers pending)
+- ✅ Tooling — `.claude` vault (fundamentals, languages, lessons, project, infra,
+  security, caching), GoF Kotlin tree, PR templates, labels, milestones
 
 ## In progress
-- _none_ (Phase 3 complete; OAuth2 covered conceptually, full provider deferred)
+- Phase 4 wrap: HTTP caching headers deferred until public read endpoints exist
 
 ## Next action
 Start **Lesson 5 — Caching** (Phase 4): Redis, cache-aside, invalidation,
