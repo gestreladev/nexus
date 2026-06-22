@@ -36,6 +36,7 @@ governed by [model_decision.md](../configurations/model_decision.md) · `[[model
 | Area | Scope | Document |
 |---|---|---|
 | Docker | Images, Dockerfiles, Compose, volumes, best practices | [docker_orchestrator.md](docker/docker_orchestrator.md) · `[[docker_orchestrator]]` |
+| Redis | In-memory backing service — cache, denylist, sessions | [redis_orchestrator.md](redis/redis_orchestrator.md) · `[[redis_orchestrator]]` |
 
 ---
 

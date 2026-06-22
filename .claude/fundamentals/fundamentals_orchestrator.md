@@ -31,7 +31,8 @@ Model selection governed by
 | Networking | Internet, DNS, TCP, connections | 1 | [networking_orchestrator.md](networking/networking_orchestrator.md) · `[[networking_orchestrator]]` |
 | HTTP | Methods, status, headers, idempotency, HTTPS/TLS | 1 | [http_orchestrator.md](http/http_orchestrator.md) · `[[http_orchestrator]]` |
 | Web | Web servers, REST, OpenAPI | 2 | [web_orchestrator.md](web/web_orchestrator.md) · `[[web_orchestrator]]` |
-| Databases | Relational model, ACID, normalization, indexing, migrations, ORM | 3 | [databases_orchestrator.md](databases/databases_orchestrator.md) · `[[databases_orchestrator]]` |
+| Databases | Relational model, ACID, normalization, indexing, migrations, ORM, NoSQL | 3 | [databases_orchestrator.md](databases/databases_orchestrator.md) · `[[databases_orchestrator]]` |
+| Caching | Cache-aside, invalidation, TTL/eviction, stampede, HTTP caching | 5 | [caching_orchestrator.md](caching/caching_orchestrator.md) · `[[caching_orchestrator]]` |
 
 ---
 

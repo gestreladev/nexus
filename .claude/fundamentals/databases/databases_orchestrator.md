@@ -27,6 +27,7 @@ Relational storage behind `nexus-api`. Taught in Lesson 3.
 | Indexing | B-tree, partial, selectivity | [indexing.md](indexing.md) · `[[indexing]]` |
 | Migrations | Versioned schema change | [migrations.md](migrations.md) · `[[migrations]]` |
 | ORM & pooling | Exposed, HikariCP, transactions | [orm_and_connection_pooling.md](orm_and_connection_pooling.md) · `[[orm_and_connection_pooling]]` |
+| NoSQL | Non-relational families; when to use vs relational | [nosql.md](nosql.md) · `[[nosql]]` |
 
 ---
 
