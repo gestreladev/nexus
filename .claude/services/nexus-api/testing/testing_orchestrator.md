@@ -23,7 +23,7 @@ Test strategy for nexus-api. Model selection governed by
 
 | Area | Scope | Document |
 |---|---|---|
-| Strategy | Test pyramid, `testApplication`, fakes vs mocks, naming | [strategy.md](strategy.md) · `[[strategy]]` |
+| Strategy | Test pyramid, `testApplication`, fakes vs mocks, naming | [testing_strategy.md](testing_strategy.md) · `[[testing_strategy]]` |
 
 ---
 

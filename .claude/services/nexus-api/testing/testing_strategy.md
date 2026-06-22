@@ -1,5 +1,5 @@
 ---
-name: strategy
+name: testing_strategy
 description: Test pyramid, testApplication, fakes vs mocks, and naming for nexus-api.
 agent:
   role: test-specialist

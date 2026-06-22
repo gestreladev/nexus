@@ -33,3 +33,4 @@ idiomatic shortcut where one exists.
 
 ## References
 - [design_patterns_orchestrator.md](../design_patterns_orchestrator.md) · `[[design_patterns_orchestrator]]`
+- [kotlin_language_orchestrator.md](../../languages/kotlin/kotlin_language_orchestrator.md) · `[[kotlin_language_orchestrator]]` — the language itself (features/idioms)
