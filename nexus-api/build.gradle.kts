@@ -40,6 +40,9 @@ dependencies {
     implementation(libs.ktor.server.auth.jwt)
     implementation(libs.bcrypt)
 
+    // Cache
+    implementation(libs.lettuce)
+
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
 }

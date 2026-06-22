@@ -75,4 +75,18 @@ class AuthRouteTest {
         application { module() }
         assertEquals(HttpStatusCode.Unauthorized, client.get("/v1/auth/me").status)
     }
+
+    @Test
+    fun `logout revokes the token via denylist`() = testApplication {
+        environment { config = testConfig() }
+        application { module() }
+        val email = uniqueEmail()
+        client.register(email)
+        val token = tokenOf(client.login(email).bodyAsText())
+        val authed: HttpRequestBuilder.() -> Unit = { header(HttpHeaders.Authorization, "Bearer $token") }
+
+        assertEquals(HttpStatusCode.OK, client.get("/v1/auth/me", authed).status)          // works
+        assertEquals(HttpStatusCode.NoContent, client.post("/v1/auth/logout", authed).status) // revoke
+        assertEquals(HttpStatusCode.Unauthorized, client.get("/v1/auth/me", authed).status)   // now rejected
+    }
 }

@@ -1,5 +1,7 @@
 package dev.nexus.api.plugins
 
+import dev.nexus.api.cache.RedisFactory
+import dev.nexus.api.cache.TokenDenylist
 import dev.nexus.api.domain.auth.AuthService
 import dev.nexus.api.domain.auth.JwtConfig
 import dev.nexus.api.domain.auth.JwtService
@@ -13,11 +15,13 @@ fun Application.configureRouting() {
     val users = UserRepository()
     val jwt = JwtService(JwtConfig.from(environment.config))
     val auth = AuthService(users, jwt)
+    val cache = RedisFactory.cache
+    val denylist = TokenDenylist(cache)
 
     routing {
         route("/v1") {
             healthRoutes()
-            authRoutes(auth, users)
+            authRoutes(auth, users, denylist, cache)
         }
     }
 }
