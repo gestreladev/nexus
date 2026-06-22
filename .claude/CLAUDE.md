@@ -12,14 +12,14 @@
 | **Local path** | `~/Projects/backend/roadmap/nexus/` |
 | **GitHub account** | `gestreladev` (SSH host alias: `github-gestreladev`) |
 | **Git remote** | `git@github-gestreladev:gestreladev/nexus.git` |
-| **Current version** | `0.2.0-dev` |
-| **Active branch** | `feat/phase-2-database` → PR #2 (open) |
+| **Current version** | `0.2.0` ✅ |
+| **Active branch** | `main` (no open PRs) |
 
 ### Services
 
 | Service | Path | Language | Framework | Port | Status |
 |---|---|---|---|---|---|
-| `nexus-api` | `nexus-api/` | Kotlin 2.1.21 | Ktor 3.1.3 / Netty | 8080 | 🔄 v0.2.0-dev |
+| `nexus-api` | `nexus-api/` | Kotlin 2.1.21 | Ktor 3.1.3 / Netty | 8080 | ✅ v0.2.0 |
 | `nexus-ingest` | `nexus-ingest/` | Python 3.12+ | FastAPI | 8081 | ⏳ v0.6.0 |
 | `nexus-search` | `nexus-search/` | Python 3.12+ | FastAPI | 8082 | ⏳ v0.11.0 |
 
