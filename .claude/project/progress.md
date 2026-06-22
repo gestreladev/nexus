@@ -23,8 +23,8 @@ metadata:
 | Released | `v0.2.0` (Data Layer) |
 | Last lesson | **Lesson 3 — Data Layer** ✅ (see log) |
 | Next lesson | **Lesson 4 — Auth & Security** (Phase 3 → `v0.3.0`) |
-| Active branch | `main` (clean) |
-| Open gaps | 3NF normalization (re-surface in Lesson 4 Recap) |
+| Active branch | `feat/fundamentals-domain` (concepts domain) |
+| Open gaps | _none_ — 3NF closed in Lesson 4 Recap ✅ |
 
 ## Done
 - ✅ Phase 0 — repo, structure, conventions
