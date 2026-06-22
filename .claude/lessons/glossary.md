@@ -44,6 +44,16 @@ Concepts introduced in lessons, newest phase last. Grows each lesson.
 - **ORM (Exposed DSL)** — type-safe SQL builder; `ResultRow` mapped to domain.
 - **Connection pool (HikariCP)** — reuse open DB connections.
 
+## Phase 3 — Auth & Security
+- **Hash vs encrypt** — hash is one-way (store it); encryption is reversible (key liability).
+- **bcrypt** — deliberately slow hash; salt + cost (work factor) embedded in 60 chars.
+- **Salt** — per-user random value; kills rainbow tables, hides shared passwords.
+- **Work factor (cost)** — tunable slowness; +1 doubles the work.
+- **JWT** — `header.payload.signature`; **signed, not encrypted** (payload is readable).
+- **Claims** — payload fields: `sub` (user id), `exp`, `iat`, custom.
+- **Bearer token** — `Authorization: Bearer <jwt>` sent per request; no server session.
+- **User enumeration** — leaking whether an email exists; avoided via generic 401.
+
 ---
 
 ## References

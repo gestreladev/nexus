@@ -35,6 +35,11 @@ dependencies {
     implementation(libs.flyway.core)
     implementation(libs.flyway.postgresql)
 
+    // Auth & security
+    implementation(libs.ktor.server.auth)
+    implementation(libs.ktor.server.auth.jwt)
+    implementation(libs.bcrypt)
+
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
 }

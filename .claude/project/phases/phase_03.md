@@ -16,26 +16,24 @@ metadata:
 
 | Field | Value |
 |---|---|
-| Version | `v0.3.0` ⏭️ next |
+| Version | `v0.3.0` ✅ shipped |
 | Lesson | 4 |
 | Topics | authentication, jwt, oauth, token-authentication, web-security, owasp-risks, cors, ssltls, bcrypt |
-| Status | ⏭️ planned |
+| Status | ✅ complete (auth layer) |
 
-## Planned deliverables
-- [ ] User registration + login endpoints (`POST /v1/auth/register`, `/login`)
-- [ ] Password hashing with bcrypt (never plaintext)
-- [ ] JWT issuance + verification; `Authorization: Bearer`
-- [ ] Protected routes (401 unauthenticated, 403 forbidden)
-- [ ] CORS configuration; OWASP Top 10 review of the auth surface
-- [ ] OAuth2 concepts (authorization code flow) — at least documented/spiked
+## Deliverables
+- [x] Registration + login endpoints (`POST /v1/auth/register`, `/login`)
+- [x] Password hashing with bcrypt cost 12 (never plaintext; 60-char column)
+- [x] JWT issuance + verification (HS256); `Authorization: Bearer`
+- [x] Protected route `GET /v1/auth/me` (401 unauthenticated)
+- [x] OWASP-aware: generic 401 (anti-enumeration), no secrets in payload, env secret
+- [~] OAuth2 — authorization-code flow covered **conceptually**; full provider deferred
+- [ ] CORS config + 403 ownership checks — arrive with resource ownership (later)
 
-## Acceptance
-- Register → login → access a protected route end-to-end (tested)
-- No secrets hardcoded; tokens signed with an env-provided key
-- Exercises passed; PR merged; tag `v0.3.0`
-
-## Open gaps to fold in
-- Recap 3NF normalization (carried from Lesson 3)
+## Acceptance — met
+- [x] Register → login → protected route end-to-end (curl + 5 integration tests)
+- [x] No secrets hardcoded; JWT signed with `JWT_SECRET` (env, dev fallback)
+- [x] Exercises passed (E1–E6); `authentication()` stage ordered before routing
 
 ## References
 - [roadmap.md](../roadmap.md) · `[[roadmap]]`
