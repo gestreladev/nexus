@@ -120,6 +120,8 @@ file structure — stop and ask. Never assume.
 | Git | Branching, commits, PRs, versioning, milestones | [git_orchestrator.md](git/git_orchestrator.md) · `[[git_orchestrator]]` |
 | Design Patterns | GoF reference, language-routed (Kotlin now) | [design_patterns_orchestrator.md](designpatterns/design_patterns_orchestrator.md) · `[[design_patterns_orchestrator]]` |
 | Services | Per-service technical docs (architecture, api, idioms, testing) | [services_orchestrator.md](services/services_orchestrator.md) · `[[services_orchestrator]]` |
+| Lessons | Interactive class engine — methodology, lesson format, session protocol, logs | [lesson_orchestrator.md](lessons/lesson_orchestrator.md) · `[[lesson_orchestrator]]` |
+| Project | Objective, roadmap, per-phase progress trackers, decisions | [project_develop_orchestrator.md](project/project_develop_orchestrator.md) · `[[project_develop_orchestrator]]` |
 
 ## References
 - [model_decision.md](configurations/model_decision.md) · `[[model_decision]]`
