@@ -35,3 +35,8 @@ docker-compose.override.yml
 # Logs
 *.log
 logs/
+
+# Obsidian — keep shared vault config, ignore machine-local layout/cache
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
+**/.obsidian/cache/

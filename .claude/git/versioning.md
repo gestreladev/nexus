@@ -1,21 +1,35 @@
-# Versioning
+---
+name: versioning
+description: Semantic versioning strategy, release process, and changelog for Nexus.
+agent:
+  role: git-workflow-specialist
+  tier: standard
+  weight: soft
+  triggers:
+    - bumping a version
+    - cutting a release or tag
+    - writing a changelog entry
+metadata:
+  type: reference
+---
 
-## Strategy
+# Versioning — Nexus
 
-Nexus follows **Semantic Versioning 2.0.0** (`MAJOR.MINOR.PATCH`).
+Follows **Semantic Versioning 2.0.0** (`MAJOR.MINOR.PATCH`).
 
 | Segment | When to bump |
 |---|---|
-| `MAJOR` | First production-ready release (`1.0.0`); breaking API changes after that |
+| `MAJOR` | First production release (`1.0.0`); breaking API changes after |
 | `MINOR` | A roadmap phase is fully complete and merged to `main` |
 | `PATCH` | Bug fix, dependency update, or improvement within a phase |
 
-`0.x.0` signals the project is pre-production. `1.0.0` is the first
-deployable release of the complete Nexus system.
+`0.x.0` = pre-production. `1.0.0` = first deployable release of the full system.
+
+---
 
 ## Current version
 
-`0.2.0` — released
+`0.2.0` — released.
 
 ## Version history
 
@@ -24,43 +38,29 @@ deployable release of the complete Nexus system.
 | `v0.1.0` | ✅ released | First Service | Ktor scaffold, health endpoint, ModulePipeline DSL |
 | `v0.2.0` | ✅ released | Database Layer | PostgreSQL, Flyway, Exposed, HikariCP |
 
+---
+
 ## Release process
 
-1. All issues for the milestone are closed
-2. PR merged into `main`
-3. `build.gradle.kts` version bumped
-4. Git tag created: `git tag -a v0.x.0 -m "Release v0.x.0"`
-5. Tag pushed: `git push origin v0.x.0`
-6. GitHub Release created from the tag with changelog
+1. All issues for the milestone are closed.
+2. PR merged into `main`.
+3. `build.gradle.kts` version bumped.
+4. Annotated tag: `git tag -a v0.x.0 -m "Release v0.x.0"`.
+5. Tag pushed: `git push origin v0.x.0`.
+6. GitHub Release created from the tag with changelog.
 
 ## Git tag convention
+`v{MAJOR}.{MINOR}.{PATCH}` — annotated (`-a`), never lightweight.
 
-```
-v{MAJOR}.{MINOR}.{PATCH}
-```
-
-Examples: `v0.1.0`, `v0.2.0`, `v1.0.0`
-
-Tags are annotated (`-a`), never lightweight.
-
-## Changelog format
-
-Each release entry follows **Keep a Changelog** (keepachangelog.com):
-
+## Changelog format (Keep a Changelog)
 ```
 ## [v0.2.0] — 2026-06-05
 ### Added
 - PostgreSQL integration via Exposed DSL
-- Flyway migrations: users, documents tables
-- HikariCP connection pool as pipeline stage
 ### Changed
-- ModulePipeline: database() stage added between statusPages and routing
+- ModulePipeline: database() stage added
 ```
 
-## Branch → version mapping
-
-| Branch pattern | Version impact |
-|---|---|
-| `feat/*` | targets a `MINOR` bump on merge |
-| `fix/*` | targets a `PATCH` bump on merge |
-| `chore/*` | targets a `PATCH` bump on merge |
+## References
+- [git_orchestrator.md](git_orchestrator.md) · `[[git_orchestrator]]`
+- [milestones.md](milestones.md) · `[[milestones]]`
