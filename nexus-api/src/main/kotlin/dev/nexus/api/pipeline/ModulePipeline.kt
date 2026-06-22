@@ -3,6 +3,7 @@ package dev.nexus.api.pipeline
 import dev.nexus.api.database.DatabaseConfig
 import dev.nexus.api.database.DatabaseFactory
 import dev.nexus.api.plugins.configureRouting
+import dev.nexus.api.plugins.configureSecurity
 import dev.nexus.api.plugins.configureSerialization
 import dev.nexus.api.plugins.configureStatusPages
 import io.ktor.server.application.*
@@ -19,7 +20,7 @@ class ModulePipeline internal constructor(private val app: Application) {
     private val configured = mutableSetOf<Stage>()
     private val chain = ArrayDeque<Application.() -> Unit>()
 
-    enum class Stage { LOGGING, SERIALIZATION, STATUS_PAGES, DATABASE, ROUTING }
+    enum class Stage { LOGGING, SERIALIZATION, STATUS_PAGES, DATABASE, AUTHENTICATION, ROUTING }
 
     fun logging(block: CallLoggingConfig.() -> Unit = {}) =
         register(Stage.LOGGING) {
@@ -57,9 +58,16 @@ class ModulePipeline internal constructor(private val app: Application) {
         }
     }
 
+    fun authentication() {
+        register(Stage.AUTHENTICATION) {
+            configureSecurity()
+        }
+    }
+
     fun routing() {
         requireStage(Stage.SERIALIZATION, current = Stage.ROUTING)
         requireStage(Stage.STATUS_PAGES, current = Stage.ROUTING)
+        requireStage(Stage.AUTHENTICATION, current = Stage.ROUTING)
         register(Stage.ROUTING) {
             configureRouting()
         }

@@ -47,7 +47,8 @@ the last completed lesson and any open gaps, then consult
 | 1 | 0 | Foundations: Internet, HTTP, DNS, Git | [lesson_01_foundations.md](log/lesson_01_foundations.md) · `[[lesson_01_foundations]]` | ✅ |
 | 2 | 1 | First Service: web servers, REST, OpenAPI | [lesson_02_first_service.md](log/lesson_02_first_service.md) · `[[lesson_02_first_service]]` | ✅ |
 | 3 | 2 | Data Layer: PostgreSQL, ACID, migrations, ORM | [lesson_03_database.md](log/lesson_03_database.md) · `[[lesson_03_database]]` | ✅ |
-| 4 | 3 | Auth & Security: JWT, OAuth2, OWASP, TLS | _next_ | ⏭️ |
+| 4 | 3 | Auth & Security: bcrypt, JWT, OWASP | [lesson_04_auth.md](log/lesson_04_auth.md) · `[[lesson_04_auth]]` | ✅ |
+| 5 | 4 | Caching: Redis, cache-aside, invalidation | _next_ | ⏭️ |
 
 ---
 

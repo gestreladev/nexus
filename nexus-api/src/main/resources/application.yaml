@@ -13,3 +13,10 @@ nexus:
     user: "nexus"
     password: "nexus"
     maxPoolSize: 10
+  jwt:
+    # Dev default only — production overrides via the JWT_SECRET env var.
+    secret: "dev-only-secret-change-me"
+    issuer: "nexus-api"
+    audience: "nexus-api"
+    realm: "nexus"
+    expiresInMinutes: 60

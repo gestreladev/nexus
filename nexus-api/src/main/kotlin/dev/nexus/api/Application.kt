@@ -10,5 +10,6 @@ fun Application.module() = nexusModule {
     serialization()
     statusPages()
     database()
+    authentication()
     routing()
 }

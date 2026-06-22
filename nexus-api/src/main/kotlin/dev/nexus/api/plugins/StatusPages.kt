@@ -1,5 +1,7 @@
 package dev.nexus.api.plugins
 
+import dev.nexus.api.domain.auth.ConflictException
+import dev.nexus.api.domain.auth.UnauthorizedException
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.statuspages.*
@@ -18,6 +20,18 @@ fun Application.configureStatusPages() {
             call.respond(
                 HttpStatusCode.BadRequest,
                 ErrorResponse("BAD_REQUEST", cause.message ?: "Invalid request"),
+            )
+        }
+        exception<ConflictException> { call, cause ->
+            call.respond(
+                HttpStatusCode.Conflict,
+                ErrorResponse("CONFLICT", cause.message ?: "Resource conflict"),
+            )
+        }
+        exception<UnauthorizedException> { call, cause ->
+            call.respond(
+                HttpStatusCode.Unauthorized,
+                ErrorResponse("UNAUTHORIZED", cause.message ?: "Unauthorized"),
             )
         }
         exception<Throwable> { call, cause ->
