@@ -35,7 +35,9 @@ Repository pattern.
 | 3 | `user_email` in documents breaks 3NF; FK to users instead | ❌ → explained |
 
 ## Gaps to revisit
-- **3NF normalization** was new — re-surface in Recap at Lesson 4.
+- **3NF normalization** — ✅ **closed** in Lesson 4 Recap (via the `learn` skill).
+  Diagnosed a transitive dependency on a fresh `sessions` table cold. Durable
+  reference: [normalization.md](../../fundamentals/databases/normalization.md) · `[[normalization]]`.
 - Partial indexes — applied in `V2__create_documents.sql`; confirm retention.
 
 ## Notes

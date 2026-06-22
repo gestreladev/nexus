@@ -119,6 +119,7 @@ file structure — stop and ask. Never assume.
 | Configurations | Model tiers, agent roles, how to use `.claude` | [configurations/](configurations/) · `[[claude_usage]]` |
 | Git | Branching, commits, PRs, versioning, milestones | [git_orchestrator.md](git/git_orchestrator.md) · `[[git_orchestrator]]` |
 | Design Patterns | GoF reference, language-routed (Kotlin now) | [design_patterns_orchestrator.md](designpatterns/design_patterns_orchestrator.md) · `[[design_patterns_orchestrator]]` |
+| Fundamentals | Backend knowledge: networking, HTTP, web, databases | [fundamentals_orchestrator.md](fundamentals/fundamentals_orchestrator.md) · `[[fundamentals_orchestrator]]` |
 | Services | Per-service technical docs (architecture, api, idioms, testing) | [services_orchestrator.md](services/services_orchestrator.md) · `[[services_orchestrator]]` |
 | Lessons | Interactive class engine — methodology, lesson format, session protocol, logs | [lesson_orchestrator.md](lessons/lesson_orchestrator.md) · `[[lesson_orchestrator]]` |
 | Project | Objective, roadmap, per-phase progress trackers, decisions | [project_develop_orchestrator.md](project/project_develop_orchestrator.md) · `[[project_develop_orchestrator]]` |

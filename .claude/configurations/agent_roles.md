@@ -39,6 +39,8 @@ must be one of these.
 | `security-auditor` | Auth, OWASP, secrets, threat modeling | power |
 | `pattern-router` | Routing GoF design-pattern queries | standard |
 | `pattern-advisor` | Explaining and applying GoF design patterns | standard |
+| `fundamentals-router` | Routing backend-fundamentals knowledge queries | standard |
+| `subject-expert` | Authoritative reference on a backend concept (networking, HTTP, web, databases) | standard |
 | `curriculum-architect` | Lesson methodology, structure, assessment design | power |
 | `tutor` | Delivering an interactive lesson; routing learning requests | standard |
 | `assessor` | Grading exercises, mastery checkpoints | standard |
