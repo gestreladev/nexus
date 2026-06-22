@@ -20,7 +20,7 @@ metadata:
 ## Current state
 | Field | Value |
 |---|---|
-| Released | `v0.2.0` (Data Layer); `v0.3.0` ready to tag (auth shipped) |
+| Released | `v0.3.0` (Auth & Security) ✅ tagged |
 | Last lesson | **Lesson 4 — Auth & Security** ✅ (see log) |
 | Next lesson | **Lesson 5 — Caching** (Phase 4 → `v0.4.0`) |
 | Active branch | `feat/phase-3-auth` (auth layer, tests green) |

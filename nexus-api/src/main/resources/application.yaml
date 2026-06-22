@@ -6,7 +6,7 @@ ktor:
     port: 8080
 
 nexus:
-  version: "0.1.0"
+  version: "0.3.0"
   environment: "development"
   db:
     url: "jdbc:postgresql://localhost:5433/nexus"

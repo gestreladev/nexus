@@ -29,7 +29,7 @@ Follows **Semantic Versioning 2.0.0** (`MAJOR.MINOR.PATCH`).
 
 ## Current version
 
-`0.2.0` — released.
+`0.3.0` — released.
 
 ## Version history
 
@@ -37,6 +37,7 @@ Follows **Semantic Versioning 2.0.0** (`MAJOR.MINOR.PATCH`).
 |---|---|---|---|
 | `v0.1.0` | ✅ released | First Service | Ktor scaffold, health endpoint, ModulePipeline DSL |
 | `v0.2.0` | ✅ released | Database Layer | PostgreSQL, Flyway, Exposed, HikariCP |
+| `v0.3.0` | ✅ released | Auth & Security | bcrypt, JWT, register/login/me, integration tests |
 
 ---
 
