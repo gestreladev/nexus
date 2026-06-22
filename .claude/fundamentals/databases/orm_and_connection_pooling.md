@@ -23,8 +23,10 @@ JetBrains) has two modes:
 ```kotlin
 UserTable.selectAll().where { UserTable.email eq email }.singleOrNull()
 ```
-You keep control of the SQL shape; Kotlin gives type safety. Implementation
-patterns: [exposed_dsl.md](../../services/nexus-api/idioms/exposed_dsl.md) · `[[exposed_dsl]]`.
+You keep control of the SQL shape; Kotlin gives type safety. It supports both
+JDBC and (in current 1.x) R2DBC drivers. Implementation patterns:
+[exposed_dsl.md](../../services/nexus-api/idioms/exposed_dsl.md) · `[[exposed_dsl]]`
+(includes a version note — Nexus pins 0.61.0; Exposed is now at 1.x).
 
 ## Connection pooling
 Opening a DB connection is expensive (TCP + auth + session setup, ~20–100ms). A

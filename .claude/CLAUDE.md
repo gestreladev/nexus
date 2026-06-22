@@ -110,6 +110,20 @@ why none applies. Any newly-introduced language must get its full GoF tree first
 When in doubt about scope, approach, or any decision affecting architecture or
 file structure — stop and ask. Never assume.
 
+### Rule 9 — Keep related docs in sync as lessons progress
+Whenever a lesson or development task introduces or changes a concept, every
+related `.claude` doc must be updated **in the same change** — never deferred:
+- the lesson `log/` entry (answers, gaps, status)
+- `project/progress.md` + the relevant `project/phases/phase_NN.md`
+- `lessons/glossary.md` (new terms)
+- any `fundamentals/`, `services/`, `designpatterns/`, or `languages/` doc whose
+  subject was taught or changed
+- this orchestrator's metadata (version, current phase) when it moves
+
+A change that teaches something but leaves the vault stale is incomplete. See
+[session_protocol.md](lessons/session_protocol.md) · `[[session_protocol]]` for
+the close-of-session checklist.
+
 ---
 
 ## Routing Table
@@ -120,6 +134,7 @@ file structure — stop and ask. Never assume.
 | Git | Branching, commits, PRs, versioning, milestones | [git_orchestrator.md](git/git_orchestrator.md) · `[[git_orchestrator]]` |
 | Design Patterns | GoF reference, language-routed (Kotlin now) | [design_patterns_orchestrator.md](designpatterns/design_patterns_orchestrator.md) · `[[design_patterns_orchestrator]]` |
 | Fundamentals | Backend knowledge: networking, HTTP, web, databases | [fundamentals_orchestrator.md](fundamentals/fundamentals_orchestrator.md) · `[[fundamentals_orchestrator]]` |
+| Languages | Per-language feature/idiom reference (Kotlin now) | [languages_orchestrator.md](languages/languages_orchestrator.md) · `[[languages_orchestrator]]` |
 | Services | Per-service technical docs (architecture, api, idioms, testing) | [services_orchestrator.md](services/services_orchestrator.md) · `[[services_orchestrator]]` |
 | Lessons | Interactive class engine — methodology, lesson format, session protocol, logs | [lesson_orchestrator.md](lessons/lesson_orchestrator.md) · `[[lesson_orchestrator]]` |
 | Project | Objective, roadmap, per-phase progress trackers, decisions | [project_develop_orchestrator.md](project/project_develop_orchestrator.md) · `[[project_develop_orchestrator]]` |

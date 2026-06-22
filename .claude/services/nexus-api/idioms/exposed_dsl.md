@@ -86,6 +86,21 @@ UserTable.update({ UserTable.id eq id }) { it[displayName] = newName }
 UserTable.deleteWhere { UserTable.id eq id }
 ```
 
+## RETURNING (Postgres) — fewer round trips
+On PostgreSQL, `insertReturning` / `updateReturning` / `deleteReturning` get
+modified columns back in one statement — no follow-up `findById`:
+```kotlin
+val created = UserTable.insertReturning {
+    it[email] = request.email
+} .single()                       // a ResultRow with the new row's columns
+```
+For `IntIdTable`, `insertAndGetId { }` returns the generated id directly.
+
+> **Version note (Context7, verified):** the `selectAll().where { }` form here is
+> current (the 0.46.0 DSL refactor). Nexus pins **Exposed 0.61.0**; the library
+> has since reached **1.x** — a future `chore(deps)` upgrade, validated before
+> bumping.
+
 ## What NOT to do
 ```kotlin
 fun findUser(id: UUID): ResultRow?            // ❌ returning ResultRow

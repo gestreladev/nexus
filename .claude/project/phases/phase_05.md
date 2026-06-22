@@ -28,4 +28,4 @@ metadata:
 
 ## References
 - [roadmap.md](../roadmap.md) · `[[roadmap]]`
-- [strategy.md](../../services/nexus-api/testing/strategy.md) · `[[strategy]]`
+- [testing_strategy.md](../../services/nexus-api/testing/testing_strategy.md) · `[[testing_strategy]]`
