@@ -23,6 +23,17 @@ metadata:
 2. **Title follows Conventional Commits** — `feat(nexus-api): add user endpoint`.
 3. **Every PR** has a milestone and at least one `type:*` label.
 4. **Squash merge** into `main` — linear, readable history.
+5. **Explain after opening (root Rule 10).** Right after a PR is opened, walk
+   through every changed file line by line, explaining each in detail, before
+   review/merge. Source of truth is the diff (`gh pr diff <n>`), not memory.
+
+## Post-open walkthrough
+The mandatory order once a PR exists:
+```
+open PR  →  explain all PR files (line by line)  →  review  →  merge
+```
+No PR skips the walkthrough — it applies to code, config, and `.claude` docs
+alike. See [CLAUDE.md](../CLAUDE.md) · `[[CLAUDE]]` Rule 10.
 
 ---
 

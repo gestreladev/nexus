@@ -124,6 +124,18 @@ A change that teaches something but leaves the vault stale is incomplete. See
 [session_protocol.md](lessons/session_protocol.md) · `[[session_protocol]]` for
 the close-of-session checklist.
 
+### Rule 10 — Explain every PR's files after opening
+Immediately after opening any PR, walk through **every file changed in that PR**,
+line by line, explaining each in detail — before the PR is reviewed or merged.
+- Cover all changed files (code, config, and `.claude` docs), not a subset.
+- Go in dependency/readable order; explain the intent of each meaningful line or
+  block, not just a summary.
+- Use the PR diff as the source of truth (`gh pr diff <n>` / `git diff`), not memory.
+- The PR does not proceed to merge until its files have been explained.
+
+See [pull_requests.md](git/pull_requests.md) · `[[pull_requests]]` for where this
+fits in the PR workflow.
+
 ---
 
 ## Routing Table
