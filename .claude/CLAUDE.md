@@ -135,6 +135,7 @@ the close-of-session checklist.
 | Design Patterns | GoF reference, language-routed (Kotlin now) | [design_patterns_orchestrator.md](designpatterns/design_patterns_orchestrator.md) · `[[design_patterns_orchestrator]]` |
 | Fundamentals | Backend knowledge: networking, HTTP, web, databases | [fundamentals_orchestrator.md](fundamentals/fundamentals_orchestrator.md) · `[[fundamentals_orchestrator]]` |
 | Languages | Per-language feature/idiom reference (Kotlin now) | [languages_orchestrator.md](languages/languages_orchestrator.md) · `[[languages_orchestrator]]` |
+| Infrastructure | Docker, Compose, containerization (CI/CD, proxy later) | [infra_orchestrator.md](infra/infra_orchestrator.md) · `[[infra_orchestrator]]` |
 | Services | Per-service technical docs (architecture, api, idioms, testing) | [services_orchestrator.md](services/services_orchestrator.md) · `[[services_orchestrator]]` |
 | Lessons | Interactive class engine — methodology, lesson format, session protocol, logs | [lesson_orchestrator.md](lessons/lesson_orchestrator.md) · `[[lesson_orchestrator]]` |
 | Project | Objective, roadmap, per-phase progress trackers, decisions | [project_develop_orchestrator.md](project/project_develop_orchestrator.md) · `[[project_develop_orchestrator]]` |
