@@ -74,6 +74,14 @@ Concepts introduced in lessons, newest phase last. Grows each lesson.
 - **CI/CD** — automated build + test on every PR (GitHub Actions).
 - **Service container** — a real DB/Redis spun up by CI so integration tests run.
 
+## Phase 6 — Python Service
+- **Polyglot backend** — multiple backend services, each in the best-fit language.
+- **FastAPI** — async Python web framework; auto-generates OpenAPI.
+- **ASGI / Uvicorn** — the async server interface / server FastAPI runs on.
+- **Pydantic** — runtime-validated models at the HTTP boundary.
+- **Static type checker (mypy)** — what makes type hints *enforced* (not Protocols).
+- **uv** — fast Python package/venv manager (managed CPython builds).
+
 ---
 
 ## References

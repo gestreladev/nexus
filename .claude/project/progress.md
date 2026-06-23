@@ -21,10 +21,10 @@ metadata:
 | Field | Value |
 |---|---|
 | Released | `v0.3.0` (Auth & Security) ✅ tagged |
-| Last lesson | **Lesson 6 — Testing & CI/CD** ✅ (see log) |
-| Next lesson | **Lesson 7 — Python Service** (Phase 6 → `v0.6.0`) |
-| Active branch | `feat/phase-5-testing-ci` (unit tests + GitHub Actions, suite green) |
-| Open gaps | R1/R2 caching recall (re-surface next recap); coverage reporting deferred |
+| Last lesson | **Lesson 7 — Python Service** ✅ (see log) |
+| Next lesson | **Lesson 8 — Async & Messaging** (Phase 7 → `v0.7.0`) |
+| Active branch | `feat/phase-6-python` (nexus-ingest FastAPI scaffold, tests green) |
+| Open gaps | R3 type-checker-vs-Protocols (re-surface); coverage + HTTP cache headers deferred |
 
 ## Done
 - ✅ Phase 0 — repo, structure, conventions
@@ -36,17 +36,19 @@ metadata:
   compose; Lettuce client (`v0.4.0`, HTTP cache headers pending)
 - 🔄 Phase 5 — unit tests (pure + with fake) + `FakeCache`; GitHub Actions CI
   with Postgres + Redis services (`v0.5.0`, coverage reporting pending)
+- 🔄 Phase 6 — `nexus-ingest` FastAPI scaffold (`/v1/health`, Python 3.13, uv,
+  mypy strict); Python GoF tree + language reference (`v0.6.0`)
 - ✅ Tooling — `.claude` vault (fundamentals, languages, lessons, project, infra,
-  security, caching), GoF Kotlin tree, PR templates, labels, milestones
+  security, caching), GoF Kotlin + Python trees, PR templates, labels, milestones
 
 ## In progress
 - Phase 4: HTTP caching headers deferred until public read endpoints exist
 - Phase 5: JaCoCo coverage reporting deferred
 
 ## Next action
-Start **Lesson 7 — Python Service** (Phase 6): build the Python full GoF tree
-first (new-language rule), then scaffold `nexus-ingest` in FastAPI.
-Branch `feat/phase-6-python`, milestone `v0.6.0`.
+Start **Lesson 8 — Async & Messaging** (Phase 7): Kafka producer in `nexus-api`,
+consumer in `nexus-ingest`; WebSockets/SSE for live document status.
+Branch `feat/phase-7-messaging`, milestone `v0.7.0`.
 
 ## Backlog (deferred)
 - Python GoF tree → build when `nexus-ingest` starts (Phase 6 / v0.6.0).
