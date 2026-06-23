@@ -65,6 +65,15 @@ Concepts introduced in lessons, newest phase last. Grows each lesson.
 - **HTTP caching** — Cache-Control / ETag / 304 at the edge.
 - **JWT denylist** — Redis set of revoked `jti`s (TTL = token life) → real revocation.
 
+## Phase 5 — Testing & CI/CD
+- **Test pyramid** — many unit / some integration / few E2E.
+- **Unit test** — pure logic, no I/O, milliseconds; the wide base.
+- **Integration test** — exercises a real boundary (DB, Redis).
+- **Fake vs mock** — fake = working in-memory impl; mock = scripted expectations. Prefer fakes.
+- **Dependency rule** — no deps → pure unit; dep behind an interface → unit with a fake.
+- **CI/CD** — automated build + test on every PR (GitHub Actions).
+- **Service container** — a real DB/Redis spun up by CI so integration tests run.
+
 ---
 
 ## References

@@ -15,16 +15,17 @@ metadata:
 
 | Field | Value |
 |---|---|
-| Version | `v0.5.0` ⏳ |
+| Version | `v0.5.0` 🔄 in progress |
 | Lesson | 6 |
 | Topics | testing, unit-testing, integration-testing, functional-testing, ci--cd |
-| Status | ⏳ planned |
+| Status | 🔄 unit tests + CI shipped; coverage reporting pending |
 
-## Planned deliverables
-- [ ] Unit tests for routes (testApplication + fakes)
-- [ ] Integration tests for repositories against a test PostgreSQL
-- [ ] GitHub Actions: build + test on PR
-- [ ] Coverage reporting
+## Deliverables
+- [x] Pure unit test (`PasswordHasherTest`) — no fake, no Docker
+- [x] Unit test with a fake (`TokenDenylistTest` + `FakeCache`)
+- [x] Integration tests against real Postgres + Redis (`Auth`/`HealthRouteTest`)
+- [x] GitHub Actions CI (`.github/workflows/ci.yml`) — build + test, Postgres + Redis services
+- [ ] Coverage reporting (JaCoCo) — deferred
 
 ## References
 - [roadmap.md](../roadmap.md) · `[[roadmap]]`
