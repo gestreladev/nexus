@@ -16,13 +16,15 @@ metadata:
 
 | Field | Value |
 |---|---|
-| Version | `v0.6.0` ⏳ |
+| Version | `v0.6.0` 🔄 in progress |
 | Lesson | 7 |
 | Topics | python, web framework (FastAPI), package management |
-| Status | ⏳ planned |
+| Status | 🔄 Python GoF tree built; nexus-ingest scaffold next |
 
-## Planned deliverables
-- [ ] **Build the Python full GoF tree first** (new-language rule, Rule 7)
+## Deliverables
+- [x] **Python full GoF tree** (new-language rule, Rule 7) — `designpatterns/python/`
+      (orchestrators + 23 idiomatic-Python leaves)
+- [ ] `languages/python/` feature reference (with the scaffold)
 - [ ] `nexus-ingest` FastAPI skeleton, `/v1/health`
 - [ ] Structured errors + config parity with `nexus-api`
 - [ ] `services/nexus-ingest/**` docs in the vault
