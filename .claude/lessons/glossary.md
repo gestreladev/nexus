@@ -82,6 +82,15 @@ Concepts introduced in lessons, newest phase last. Grows each lesson.
 - **Static type checker (mypy)** — what makes type hints *enforced* (not Protocols).
 - **uv** — fast Python package/venv manager (managed CPython builds).
 
+## Phase 7 — Async & Messaging
+- **Message broker** — middle layer carrying events producer → consumer.
+- **Topic / partition** — named event stream, split for parallelism; order per partition.
+- **Consumer group** — consumers sharing a group split partitions → scale.
+- **Offset** — a consumer's position; committing = "processed up to here".
+- **At-least-once** — default delivery; may duplicate → consumers must be idempotent.
+- **Key-ordering** — key by entity (documentId) to keep its events ordered.
+- **SSE / WebSockets** — server→client / full-duplex real-time to the client.
+
 ---
 
 ## References

@@ -33,6 +33,7 @@ Model selection governed by
 | Web | Web servers, REST, OpenAPI | 2 | [web_orchestrator.md](web/web_orchestrator.md) · `[[web_orchestrator]]` |
 | Databases | Relational model, ACID, normalization, indexing, migrations, ORM, NoSQL | 3 | [databases_orchestrator.md](databases/databases_orchestrator.md) · `[[databases_orchestrator]]` |
 | Caching | Cache-aside, invalidation, TTL/eviction, stampede, HTTP caching | 5 | [caching_orchestrator.md](caching/caching_orchestrator.md) · `[[caching_orchestrator]]` |
+| Messaging | Brokers, Kafka, delivery/ordering, real-time (WS/SSE) | 8 | [messaging_orchestrator.md](messaging/messaging_orchestrator.md) · `[[messaging_orchestrator]]` |
 
 ---
 

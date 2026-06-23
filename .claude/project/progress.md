@@ -21,9 +21,9 @@ metadata:
 | Field | Value |
 |---|---|
 | Released | `v0.3.0` (Auth & Security) ✅ tagged |
-| Last lesson | **Lesson 7 — Python Service** ✅ (see log) |
-| Next lesson | **Lesson 8 — Async & Messaging** (Phase 7 → `v0.7.0`) |
-| Active branch | `feat/phase-6-python` (nexus-ingest FastAPI scaffold, tests green) |
+| Last lesson | **Lesson 8 — Async & Messaging** ✅ (see log) |
+| Next lesson | **Lesson 9 — Containers & Architecture** (Phase 8 → `v0.8.0`) |
+| Active branch | `feat/phase-7-messaging` (Kafka producer→consumer, suites green) |
 | Open gaps | R3 type-checker-vs-Protocols (re-surface); coverage + HTTP cache headers deferred |
 
 ## Done

@@ -23,3 +23,7 @@ nexus:
   redis:
     # Dev default; production overrides via the REDIS_URL env var.
     url: "redis://localhost:6379"
+  kafka:
+    # Dev default; production overrides via KAFKA_BOOTSTRAP_SERVERS.
+    bootstrapServers: "localhost:9092"
+    documentTopic: "document.uploaded"
