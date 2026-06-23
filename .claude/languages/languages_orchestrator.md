@@ -33,7 +33,7 @@ add its `languages/<lang>/` reference here alongside its full GoF tree.
 | Language | Status | Document |
 |---|---|---|
 | Kotlin | ✅ active (2.1.21) | [kotlin_language_orchestrator.md](kotlin/kotlin_language_orchestrator.md) · `[[kotlin_language_orchestrator]]` |
-| Python | ⏳ v0.6.0 | _added with nexus-ingest_ |
+| Python | ✅ active (3.13) | [python_language_orchestrator.md](python/python_language_orchestrator.md) · `[[python_language_orchestrator]]` |
 
 ---
 
