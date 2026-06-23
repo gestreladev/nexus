@@ -49,7 +49,8 @@ the last completed lesson and any open gaps, then consult
 | 3 | 2 | Data Layer: PostgreSQL, ACID, migrations, ORM | [lesson_03_database.md](log/lesson_03_database.md) · `[[lesson_03_database]]` | ✅ |
 | 4 | 3 | Auth & Security: bcrypt, JWT, OWASP | [lesson_04_auth.md](log/lesson_04_auth.md) · `[[lesson_04_auth]]` | ✅ |
 | 5 | 4 | Caching: Redis, cache-aside, JWT denylist | [lesson_05_caching.md](log/lesson_05_caching.md) · `[[lesson_05_caching]]` | ✅ |
-| 6 | 5 | Testing & CI/CD | _next_ | ⏭️ |
+| 6 | 5 | Testing & CI/CD: pyramid, fakes, GitHub Actions | [lesson_06_testing.md](log/lesson_06_testing.md) · `[[lesson_06_testing]]` | ✅ |
+| 7 | 6 | Python Service: nexus-ingest, FastAPI | _next_ | ⏭️ |
 
 ---
 

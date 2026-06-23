@@ -21,10 +21,10 @@ metadata:
 | Field | Value |
 |---|---|
 | Released | `v0.3.0` (Auth & Security) ✅ tagged |
-| Last lesson | **Lesson 5 — Caching** ✅ (see log) |
-| Next lesson | **Lesson 6 — Testing & CI/CD** (Phase 5 → `v0.5.0`) |
-| Active branch | `feat/phase-4-caching` (Redis cache + denylist, tests green) |
-| Open gaps | E5 ✅ closed (Redis denylist); HTTP cache headers pending public reads |
+| Last lesson | **Lesson 6 — Testing & CI/CD** ✅ (see log) |
+| Next lesson | **Lesson 7 — Python Service** (Phase 6 → `v0.6.0`) |
+| Active branch | `feat/phase-5-testing-ci` (unit tests + GitHub Actions, suite green) |
+| Open gaps | R1/R2 caching recall (re-surface next recap); coverage reporting deferred |
 
 ## Done
 - ✅ Phase 0 — repo, structure, conventions
@@ -34,16 +34,19 @@ metadata:
   pipeline stage, 5 integration tests (`v0.3.0`)
 - 🔄 Phase 4 — Redis cache-aside (`/me`) + JWT denylist (`logout`); Redis in
   compose; Lettuce client (`v0.4.0`, HTTP cache headers pending)
+- 🔄 Phase 5 — unit tests (pure + with fake) + `FakeCache`; GitHub Actions CI
+  with Postgres + Redis services (`v0.5.0`, coverage reporting pending)
 - ✅ Tooling — `.claude` vault (fundamentals, languages, lessons, project, infra,
   security, caching), GoF Kotlin tree, PR templates, labels, milestones
 
 ## In progress
-- Phase 4 wrap: HTTP caching headers deferred until public read endpoints exist
+- Phase 4: HTTP caching headers deferred until public read endpoints exist
+- Phase 5: JaCoCo coverage reporting deferred
 
 ## Next action
-Start **Lesson 5 — Caching** (Phase 4): Redis, cache-aside, invalidation,
-HTTP caching. Deliverable: a caching decorator over a repository in `nexus-api`.
-Branch `feat/phase-4-caching`, milestone `v0.4.0`.
+Start **Lesson 7 — Python Service** (Phase 6): build the Python full GoF tree
+first (new-language rule), then scaffold `nexus-ingest` in FastAPI.
+Branch `feat/phase-6-python`, milestone `v0.6.0`.
 
 ## Backlog (deferred)
 - Python GoF tree → build when `nexus-ingest` starts (Phase 6 / v0.6.0).
