@@ -44,7 +44,10 @@ begins, build `designpatterns/python/**` first.
 | Language | Status | Folder |
 |---|---|---|
 | Kotlin | ✅ active | [kotlin_orchestrator.md](kotlin/kotlin_orchestrator.md) · `[[kotlin_orchestrator]]` |
-| Python | ⏳ v0.6.0 | _to be created with nexus-ingest_ |
+| Python | ✅ active | [python_orchestrator.md](python/python_orchestrator.md) · `[[python_orchestrator]]` |
+
+> Python GoF files use a `py_` filename prefix (e.g. `py_strategy.md`) so
+> wikilinks stay unique alongside the unprefixed Kotlin tree.
 
 ---
 
