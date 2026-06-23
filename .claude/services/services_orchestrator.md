@@ -25,7 +25,7 @@ idioms, and testing docs. Model selection governed by
 | Service | Language | Scope | Document |
 |---|---|---|---|
 | nexus-api | Kotlin / Ktor | Gateway API — users, documents, auth, routing | [nexus_api_orchestrator.md](nexus-api/nexus_api_orchestrator.md) · `[[nexus_api_orchestrator]]` |
-| nexus-ingest | Python / FastAPI | Document ingestion, chunking, embedding (v0.6.0) | ⏳ planned |
+| nexus-ingest | Python / FastAPI | Document ingestion, chunking, embedding | [nexus_ingest_orchestrator.md](nexus-ingest/nexus_ingest_orchestrator.md) · `[[nexus_ingest_orchestrator]]` |
 | nexus-search | Python / FastAPI | Vector search, RAG, LLM responses (v0.11.0) | ⏳ planned |
 
 ---
