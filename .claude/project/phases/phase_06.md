@@ -24,7 +24,7 @@ metadata:
 ## Deliverables
 - [x] **Python full GoF tree** (new-language rule, Rule 7) — `designpatterns/python/`
       (orchestrators + 23 idiomatic-Python leaves)
-- [ ] `languages/python/` feature reference (with the scaffold)
+- [x] `languages/python/` feature reference (Python 3.13, Context7-verified)
 - [ ] `nexus-ingest` FastAPI skeleton, `/v1/health`
 - [ ] Structured errors + config parity with `nexus-api`
 - [ ] `services/nexus-ingest/**` docs in the vault
