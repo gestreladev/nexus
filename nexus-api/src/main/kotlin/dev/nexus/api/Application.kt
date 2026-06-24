@@ -11,6 +11,7 @@ fun Application.module() = nexusModule {
     statusPages()
     database()
     redis()
+    kafka()
     authentication()
     routing()
 }

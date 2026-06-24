@@ -8,6 +8,7 @@ postgresql = "42.7.5"
 flyway = "11.8.2"
 bcrypt = "0.10.2"
 lettuce = "6.7.1.RELEASE"
+kafka = "3.9.0"
 
 [libraries]
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
@@ -31,6 +32,7 @@ ktor-server-auth = { module = "io.ktor:ktor-server-auth-jvm", version.ref = "kto
 ktor-server-auth-jwt = { module = "io.ktor:ktor-server-auth-jwt-jvm", version.ref = "ktor" }
 bcrypt = { module = "at.favre.lib:bcrypt", version.ref = "bcrypt" }
 lettuce = { module = "io.lettuce:lettuce-core", version.ref = "lettuce" }
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

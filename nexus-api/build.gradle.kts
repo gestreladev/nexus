@@ -43,6 +43,9 @@ dependencies {
     // Cache
     implementation(libs.lettuce)
 
+    // Messaging
+    implementation(libs.kafka.clients)
+
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
 }

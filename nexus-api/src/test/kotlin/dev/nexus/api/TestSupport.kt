@@ -20,4 +20,6 @@ fun testConfig() = MapApplicationConfig(
     "nexus.jwt.realm" to "nexus",
     "nexus.jwt.expiresInMinutes" to "60",
     "nexus.redis.url" to "redis://localhost:6379",
+    "nexus.kafka.bootstrapServers" to "localhost:9092",
+    "nexus.kafka.documentTopic" to "document.uploaded",
 )

@@ -4,6 +4,8 @@ import dev.nexus.api.cache.CacheConfig
 import dev.nexus.api.cache.RedisFactory
 import dev.nexus.api.database.DatabaseConfig
 import dev.nexus.api.database.DatabaseFactory
+import dev.nexus.api.messaging.KafkaConfig
+import dev.nexus.api.messaging.KafkaFactory
 import dev.nexus.api.plugins.configureRouting
 import dev.nexus.api.plugins.configureSecurity
 import dev.nexus.api.plugins.configureSerialization
@@ -22,7 +24,7 @@ class ModulePipeline internal constructor(private val app: Application) {
     private val configured = mutableSetOf<Stage>()
     private val chain = ArrayDeque<Application.() -> Unit>()
 
-    enum class Stage { LOGGING, SERIALIZATION, STATUS_PAGES, DATABASE, REDIS, AUTHENTICATION, ROUTING }
+    enum class Stage { LOGGING, SERIALIZATION, STATUS_PAGES, DATABASE, REDIS, KAFKA, AUTHENTICATION, ROUTING }
 
     fun logging(block: CallLoggingConfig.() -> Unit = {}) =
         register(Stage.LOGGING) {
@@ -66,6 +68,12 @@ class ModulePipeline internal constructor(private val app: Application) {
         }
     }
 
+    fun kafka() {
+        register(Stage.KAFKA) {
+            KafkaFactory.init(KafkaConfig.from(environment.config))
+        }
+    }
+
     fun authentication() {
         // Auth's denylist check reads the shared cache, so Redis must init first.
         requireStage(Stage.REDIS, current = Stage.AUTHENTICATION)
@@ -77,6 +85,7 @@ class ModulePipeline internal constructor(private val app: Application) {
     fun routing() {
         requireStage(Stage.SERIALIZATION, current = Stage.ROUTING)
         requireStage(Stage.STATUS_PAGES, current = Stage.ROUTING)
+        requireStage(Stage.KAFKA, current = Stage.ROUTING)            // document routes publish events
         requireStage(Stage.AUTHENTICATION, current = Stage.ROUTING)
         register(Stage.ROUTING) {
             configureRouting()

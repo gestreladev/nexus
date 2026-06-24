@@ -11,5 +11,10 @@ class Settings(BaseSettings):
     environment: str = "development"
     port: int = 8081
 
+    # Messaging — NEXUS_KAFKA_* override these.
+    kafka_bootstrap_servers: str = "localhost:9092"
+    kafka_document_topic: str = "document.uploaded"
+    kafka_group_id: str = "nexus-ingest"
+
 
 settings = Settings()
