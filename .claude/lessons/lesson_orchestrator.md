@@ -27,6 +27,20 @@ the last completed lesson and any open gaps, then consult
 
 ---
 
+## Mandatory Rule — Faithful walkthrough abbreviations
+When explaining code in a lesson or PR walkthrough (root Rule 10), abbreviated
+snippets must stay **self-consistent**:
+- **Never elide the line that defines** a variable/symbol the snippet then
+  references — an undefined-looking reference makes the code read as broken.
+- Mark every omission explicitly with `...` / `…`; what's shown must hold
+  together on its own.
+- **When in doubt about the real code, read the file** — don't reconstruct a
+  snippet from memory.
+
+A walkthrough's job is to clarify, not to make correct code look wrong.
+
+---
+
 ## Routing Table
 
 | Area | Scope | Document |
