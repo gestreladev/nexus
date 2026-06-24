@@ -18,24 +18,26 @@ Compose defines a multi-container app in one YAML file and runs it with
 `docker compose up`. (Verified against docs.docker.com / docker/compose via
 Context7.)
 
-## Nexus today
+## Nexus today (Phase 8 — the whole system)
+One `docker compose up` runs **five** services; `nexus-api` + `nexus-ingest` are
+built from their Dockerfiles, the rest are infra images:
+
+| Service | Image / build | Role |
+|---|---|---|
+| `postgres` | pgvector/pgvector:pg17 | relational store (5433→5432) |
+| `redis` | redis:7-alpine | cache + JWT denylist |
+| `kafka` | confluentinc/cp-kafka:7.8.0 | broker, **dual-listener** (host 9092 / in-net 29092) |
+| `nexus-api` | `build: ./nexus-api` | Kotlin/Ktor API (8080), `depends_on` all infra healthy |
+| `nexus-ingest` | `build: ./nexus-ingest` | Python Kafka consumer (8081) |
+
 ```yaml
-services:
   postgres:
     image: pgvector/pgvector:pg17
     environment:
-      POSTGRES_DB: nexus
-      POSTGRES_USER: nexus
-      POSTGRES_PASSWORD: nexus
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}  # secret from gitignored .env
     ports: ["5433:5432"]
     volumes: ["nexus-postgres-data:/var/lib/postgresql/data"]
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U nexus -d nexus"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-volumes:
-  nexus-postgres-data:
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U nexus -d nexus"], interval: 5s, retries: 10 }
 ```
 
 ## Startup ordering — depends_on + health (Phase 8)

@@ -26,7 +26,7 @@ How Nexus is containerized. Content verified against current Docker docs
 | Field | Value |
 |---|---|
 | Compose file | `docker-compose.yml` (repo root) |
-| Base images | `eclipse-temurin:21-jre-jammy` (run), `pgvector/pgvector:pg17` (DB) |
+| Base images | `eclipse-temurin:17-jre-jammy` (nexus-api), `python:3.13-slim` (nexus-ingest), `pgvector/pgvector:pg17` (DB) |
 | Compose spec | services / depends_on `service_healthy` / healthchecks / named volumes |
 | Source | docs.docker.com (Context7) |
 

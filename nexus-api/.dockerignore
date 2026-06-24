@@ -1,0 +1,10 @@
+.git
+.gradle
+build
+.env
+.env.example
+*.log
+*.md
+gradlew.bat
+.idea
+.DS_Store

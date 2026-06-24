@@ -14,8 +14,9 @@ metadata:
 
 # Architecture Vision — Nexus
 
-Target end-state (v1.0.0). Current build reaches the `nexus-api` + PostgreSQL
-layer; the rest arrives phase by phase.
+Target end-state (v1.0.0). Current build (v0.8.0) reaches the full 5-service
+containerized system — `nexus-api` + PostgreSQL + Redis + Kafka + `nexus-ingest`,
+all running from one `docker compose up`; search/observability/RAG arrive next.
 
 ```
                          ┌───────────────────────────────────────┐
@@ -41,9 +42,10 @@ layer; the rest arrives phase by phase.
 |---|---|---|
 | nexus-api gateway | 1 | ✅ |
 | PostgreSQL data layer | 2 | ✅ |
-| Auth (JWT/OAuth2) | 3 | ⏭️ |
-| Redis cache | 4 | ⏳ |
-| nexus-ingest + Kafka | 6–7 | ⏳ |
+| Auth (JWT/OAuth2) | 3 | ✅ |
+| Redis cache | 4 | ✅ |
+| nexus-ingest + Kafka | 6–7 | ✅ |
+| Containerization (whole system, Compose) | 8 | ✅ |
 | pgvector + search | 9 | ⏳ |
 | Observability | 10 | ⏳ |
 | nexus-search RAG | 11 | ⏳ |

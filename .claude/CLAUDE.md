@@ -31,14 +31,14 @@ governed by [model_decision.md](configurations/model_decision.md) · `[[model_de
 | Local path | `~/Projects/backend/roadmap/nexus/` |
 | GitHub account | `gestreladev` (SSH host alias: `github-gestreladev`) |
 | Git remote | `git@github-gestreladev:gestreladev/nexus.git` |
-| Current version | `0.3.0` |
+| Current version | `0.8.0` |
 
 ### Services
 
 | Service | Path | Language | Framework | Port | Status |
 |---|---|---|---|---|---|
-| `nexus-api` | `nexus-api/` | Kotlin 2.1.21 | Ktor 3.1.3 / Netty | 8080 | ✅ v0.3.0 |
-| `nexus-ingest` | `nexus-ingest/` | Python 3.13 | FastAPI / Uvicorn | 8081 | 🔄 v0.6.0 (scaffold) |
+| `nexus-api` | `nexus-api/` | Kotlin 2.1.21 | Ktor 3.1.3 / Netty | 8080 | ✅ v0.8.0 (containerized) |
+| `nexus-ingest` | `nexus-ingest/` | Python 3.13 | FastAPI / Uvicorn | 8081 | ✅ v0.8.0 (consumer, containerized) |
 | `nexus-search` | `nexus-search/` | Python 3.12+ | FastAPI | 8082 | ⏳ v0.11.0 |
 
 ### Infrastructure
@@ -46,10 +46,10 @@ governed by [model_decision.md](configurations/model_decision.md) · `[[model_de
 | Component | Technology | Status |
 |---|---|---|
 | Relational DB | PostgreSQL 17 + pgvector (port 5433) | ✅ running |
-| Cache | Redis 7 | ⏳ v0.4.0 |
-| Messaging | Kafka | ⏳ v0.7.0 |
+| Cache | Redis 7 | ✅ v0.4.0 |
+| Messaging | Kafka (KRaft, dual-listener) | ✅ v0.7.0 |
 | Observability | OpenTelemetry + Grafana | ⏳ v0.10.0 |
-| Container | Docker Compose (`docker-compose.yml` at repo root) | ✅ partial |
+| Container | Docker Compose — whole system, one `up` | ✅ v0.8.0 |
 
 ### Build tooling — nexus-api
 

@@ -39,8 +39,10 @@ Ktor runs on a pluggable engine; Nexus uses **Netty** — non-blocking,
 high-concurrency, the production default on the JVM.
 
 ## Why it matters in Nexus
-`nexus-api` is the application server. Local/dev runs it directly on :8080. The
-reverse proxy (Nginx/Caddy) arrives in Phase 8 with full containerization.
+`nexus-api` is the application server. Local/dev runs it directly on :8080, and
+Phase 8 containerized the whole system (one `docker compose up`). The reverse
+proxy (Nginx/Caddy) was **deferred past Phase 8** to a later infra phase — taught
+as a concept there, not yet built.
 
 ## References
 - [web_orchestrator.md](web_orchestrator.md) · `[[web_orchestrator]]`

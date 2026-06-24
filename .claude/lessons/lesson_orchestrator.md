@@ -66,7 +66,7 @@ A walkthrough's job is to clarify, not to make correct code look wrong.
 | 6 | 5 | Testing & CI/CD: pyramid, fakes, GitHub Actions | [lesson_06_testing.md](log/lesson_06_testing.md) · `[[lesson_06_testing]]` | ✅ |
 | 7 | 6 | Python Service: nexus-ingest, FastAPI | [lesson_07_python_service.md](log/lesson_07_python_service.md) · `[[lesson_07_python_service]]` | ✅ |
 | 8 | 7 | Async & Messaging: Kafka producer → consumer | [lesson_08_messaging.md](log/lesson_08_messaging.md) · `[[lesson_08_messaging]]` | ✅ |
-| 9 | 8 | Containers & Architecture: Docker Compose, microservices | _next_ | ⏭️ |
+| 9 | 8 | Containers & Architecture: Docker Compose, microservices | [lesson_09_containers.md](log/lesson_09_containers.md) · `[[lesson_09_containers]]` | ✅ |
 
 ---
 
