@@ -34,7 +34,8 @@ Model selection governed by
 | Build | Gradle wrapper 8.13, version catalog |
 | Database | PostgreSQL 17 via Exposed + HikariCP + Flyway |
 | Port | 8080 |
-| Version | v0.2.0 |
+| Container | multi-stage `Dockerfile` (Temurin 17, non-root); runs in Compose with 12-factor env + `/v1/health` healthcheck |
+| Version | v0.8.0 |
 
 ---
 

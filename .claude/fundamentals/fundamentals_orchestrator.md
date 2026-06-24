@@ -34,6 +34,7 @@ Model selection governed by
 | Databases | Relational model, ACID, normalization, indexing, migrations, ORM, NoSQL | 3 | [databases_orchestrator.md](databases/databases_orchestrator.md) · `[[databases_orchestrator]]` |
 | Caching | Cache-aside, invalidation, TTL/eviction, stampede, HTTP caching | 5 | [caching_orchestrator.md](caching/caching_orchestrator.md) · `[[caching_orchestrator]]` |
 | Messaging | Brokers, Kafka, delivery/ordering, real-time (WS/SSE) | 8 | [messaging_orchestrator.md](messaging/messaging_orchestrator.md) · `[[messaging_orchestrator]]` |
+| Architecture | Monolith/microservices/SOA/serverless, 12-factor, service mesh, circuit breaker | 9 | [architecture_fundamentals_orchestrator.md](architecture/architecture_fundamentals_orchestrator.md) · `[[architecture_fundamentals_orchestrator]]` |
 
 ---
 

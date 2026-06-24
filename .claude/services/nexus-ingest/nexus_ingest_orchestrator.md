@@ -36,7 +36,8 @@ shape, same `/v1/health`). Python 3.13. Model selection:
 | Models | Pydantic v2 |
 | Packaging | `pyproject.toml` + `uv` venv |
 | Port | 8081 |
-| Status | scaffolded (`v0.6.0`) — `/v1/health` |
+| Container | multi-stage `Dockerfile` (`python:3.13-slim`, non-root, `uv` venv); runs in Compose with `NEXUS_*` 12-factor env + `/v1/health` healthcheck |
+| Status | `v0.7.0` Kafka consumer · `v0.8.0` containerized — `/v1/health` |
 
 ---
 

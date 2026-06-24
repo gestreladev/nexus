@@ -91,6 +91,20 @@ Concepts introduced in lessons, newest phase last. Grows each lesson.
 - **Key-ordering** — key by entity (documentId) to keep its events ordered.
 - **SSE / WebSockets** — server→client / full-duplex real-time to the client.
 
+## Phase 8 — Containers & Architecture
+- **Multi-stage build** — fat build stage compiles; slim runtime stage ships only
+  the artifact → smaller image + smaller attack surface.
+- **Non-root container** — run as an unprivileged user; limits blast radius.
+- **12-factor config** — config in the environment, not the image; same image, env per deploy.
+- **Service-name DNS** — Compose resolves a service name to its container; use it
+  in-network (`kafka:29092`), `localhost:<published>` from the host.
+- **Dual-listener (Kafka)** — a broker advertises an address back to clients, so it
+  needs EXTERNAL (host) + INTERNAL (in-network) listeners.
+- **depends_on: service_healthy** — gate startup on a healthcheck (readiness), not start.
+- **Monolith / microservices / SOA / serverless** — deployment-unit granularity spectrum.
+- **Service mesh** — sidecar layer handling service-to-service networking.
+- **Circuit breaker** — fail fast when a dependency is down; stop hammering it.
+
 ---
 
 ## References

@@ -29,6 +29,9 @@ Lightweight ADRs. Newest last. Each: decision, why, status.
 | 9 | Full GoF tree per language in use (Kotlin now) | Rule 7; new languages get their tree before code | ✅ |
 | 10 | 3-tier model selection (Nano/Standard/Power) | Adopted from vault; replaces ad-hoc Rule 5 | ✅ |
 | 11 | Vault is single source of truth (PLAN.md → pointer) | Repo self-contained; no drift | ✅ |
+| 12 | Multi-stage, non-root container baseline for all services | Small images + reduced attack surface; runtime ships only the artifact | ✅ |
+| 13 | Kafka **dual-listener** (EXTERNAL `localhost:9092` + INTERNAL `kafka:29092`) | A broker advertises an address back to clients; one address can't serve both host and in-network containers | ✅ |
+| 14 | Compose secrets via required `${VAR:?}` from a gitignored `.env` | No plaintext secrets committed to a public repo; fail fast if unset | ✅ |
 
 ## How to add
 Append a row with the next number. If a decision is reversed, add a new row

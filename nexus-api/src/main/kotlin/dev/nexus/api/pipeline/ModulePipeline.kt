@@ -52,9 +52,11 @@ class ModulePipeline internal constructor(private val app: Application) {
             val config = environment.config
             DatabaseFactory.init(
                 DatabaseConfig(
-                    url = config.property("nexus.db.url").getString(),
-                    user = config.property("nexus.db.user").getString(),
-                    password = config.property("nexus.db.password").getString(),
+                    // Env-first (containers point at the postgres service), yaml dev default.
+                    url = System.getenv("DB_URL") ?: config.property("nexus.db.url").getString(),
+                    user = System.getenv("DB_USER") ?: config.property("nexus.db.user").getString(),
+                    password = System.getenv("DB_PASSWORD")
+                        ?: config.property("nexus.db.password").getString(),
                     maxPoolSize = config.propertyOrNull("nexus.db.maxPoolSize")
                         ?.getString()?.toInt() ?: 10,
                 )
