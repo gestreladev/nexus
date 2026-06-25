@@ -59,6 +59,10 @@ class ModulePipeline internal constructor(private val app: Application) {
                         ?: config.property("nexus.db.password").getString(),
                     maxPoolSize = config.propertyOrNull("nexus.db.maxPoolSize")
                         ?.getString()?.toInt() ?: 10,
+                    // Fat-jar classpath scanning mis-resolves migration names, so the
+                    // container points Flyway at a filesystem copy of the migrations.
+                    migrationsLocation = System.getenv("DB_MIGRATIONS_LOCATION")
+                        ?: "classpath:db/migration",
                 )
             )
         }

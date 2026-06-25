@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
@@ -5,7 +7,7 @@ plugins {
 }
 
 group = "dev.nexus"
-version = "0.8.0"
+version = "0.9.0"
 
 application {
     mainClass.set("dev.nexus.api.ApplicationKt")
@@ -48,4 +50,13 @@ dependencies {
 
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
+}
+
+// The fat jar merges many deps' META-INF/services/ files. Without merging, one
+// dependency's ServiceLoader file clobbers another's — which silently drops
+// Flyway's SQL-migration resolver plugins (flyway-core) when only the
+// flyway-database-postgresql entries survive. mergeServiceFiles() concatenates
+// them so every plugin is discovered.
+tasks.withType<ShadowJar> {
+    mergeServiceFiles()
 }

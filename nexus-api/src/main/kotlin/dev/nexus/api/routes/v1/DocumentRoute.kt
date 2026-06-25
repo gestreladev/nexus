@@ -16,18 +16,19 @@ import kotlinx.serialization.Serializable
 import java.util.UUID
 
 @Serializable
-data class CreateDocumentBody(val title: String)
+data class CreateDocumentBody(val title: String, val content: String = "")
 
 @Serializable
 data class DocumentResponse(
     val id: String,
     val title: String,
+    val content: String,
     val status: String,
     val createdAt: String,
 )
 
 private fun Document.toResponse() =
-    DocumentResponse(id.toString(), title, status.name, createdAt.toString())
+    DocumentResponse(id.toString(), title, content, status.name, createdAt.toString())
 
 fun Route.documentRoutes(
     documents: DocumentRepository,
@@ -42,7 +43,7 @@ fun Route.documentRoutes(
                 val body = call.receive<CreateDocumentBody>()
                 require(body.title.isNotBlank()) { "Title is required" }
 
-                val doc = documents.create(CreateDocumentRequest(userId, body.title))
+                val doc = documents.create(CreateDocumentRequest(userId, body.title, body.content))
                 publisher.publishUploaded(doc.id, doc.userId, doc.title)   // async ingest trigger
                 call.respond(HttpStatusCode.Created, doc.toResponse())
             }

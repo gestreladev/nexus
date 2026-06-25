@@ -28,7 +28,7 @@ lessons. Detailed trackers in [phases/](phases/).
 | 6 | v0.6.0 | python, FastAPI | Python | `nexus-ingest` skeleton | 7 | ✅ |
 | 7 | v0.7.0 | kafka, rabbitmq, websockets, SSE | Kotlin+Py | async pipeline | 8 | ✅ |
 | 8 | v0.8.0 | docker, 12-factor, monolith/microservices/SOA/serverless, service-mesh, circuit-breaker | Docker | full compose | 9 | ✅ |
-| 9 | v0.9.0 | search, elasticsearch, vectors, embeddings | Python+SQL | vector search | 10 | ⏳ |
+| 9 | v0.9.0 | search, elasticsearch, vectors, embeddings | Python+SQL | vector search | 10 | ✅ |
 | 10 | v0.10.0 | monitoring, observability, telemetry | Kotlin+Py | OTel + Grafana | 11 | ⏳ |
 | 11 | v0.11.0 | LLMs, RAG, agents, function-calling, MCP | Python | `nexus-search` RAG | 12 | ⏳ |
 | 12 | v1.0.0 | scale, CAP, replication, sharding, N+1 | Kotlin+Py | prod hardening | 13 | ⏳ |

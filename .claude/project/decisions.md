@@ -32,6 +32,10 @@ Lightweight ADRs. Newest last. Each: decision, why, status.
 | 12 | Multi-stage, non-root container baseline for all services | Small images + reduced attack surface; runtime ships only the artifact | ✅ |
 | 13 | Kafka **dual-listener** (EXTERNAL `localhost:9092` + INTERNAL `kafka:29092`) | A broker advertises an address back to clients; one address can't serve both host and in-network containers | ✅ |
 | 14 | Compose secrets via required `${VAR:?}` from a gitignored `.env` | No plaintext secrets committed to a public repo; fail fast if unset | ✅ |
+| 15 | Embedding provider behind a Strategy (local + Voyage + fake), selected by env | Swap providers without code change; fake enables offline/CI testing (Rule 7) | ✅ |
+| 16 | Standardize embeddings on **1024 dims** for every provider | A common dim makes local↔Voyage interchangeable with no re-embed migration | ✅ |
+| 17 | `documents` stores `content`; `nexus-api` Flyway owns all schema (incl. `document_chunks`) | Claim-check: thin events, DB is the system of record; single migration authority | ✅ |
+| 18 | Fat jar must `mergeServiceFiles()` | Shadow-merge clobbered Flyway's `ServiceLoader` plugin file → SQL resolver dropped → migrations silently un-resolved | ✅ |
 
 ## How to add
 Append a row with the next number. If a decision is reversed, add a new row

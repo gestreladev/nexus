@@ -36,7 +36,7 @@ object DatabaseFactory {
         log.info("Running Flyway migrations…")
         Flyway.configure()
             .dataSource(dataSource)
-            .locations("classpath:db/migration")
+            .locations(config.migrationsLocation)
             .baselineOnMigrate(config.baselineOnMigrate)
             .load()
             .migrate()
@@ -52,4 +52,5 @@ data class DatabaseConfig(
     val password: String,
     val maxPoolSize: Int = 10,
     val baselineOnMigrate: Boolean = false,
+    val migrationsLocation: String = "classpath:db/migration",
 )

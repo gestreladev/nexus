@@ -105,6 +105,18 @@ Concepts introduced in lessons, newest phase last. Grows each lesson.
 - **Service mesh** — sidecar layer handling service-to-service networking.
 - **Circuit breaker** — fail fast when a dependency is down; stop hammering it.
 
+## Phase 9 — Search & Vectors
+- **Lexical search** — full-text matching on exact lexemes (`tsvector`/`tsquery`, GIN).
+- **Semantic search** — match by meaning via embedding vectors.
+- **Embedding** — text→fixed-length vector; similar meaning ⇒ nearby (cosine).
+- **Retrieval asymmetry** — documents and queries embedded differently (`input_type`/prompt).
+- **ANN** — approximate nearest neighbor; trades a little recall for sub-linear speed.
+- **HNSW / IVFFlat** — graph-based / clustering-based vector indexes (HNSW = 2026 default).
+- **pgvector** — Postgres extension: `vector(N)` column, `<=>` cosine distance.
+- **Chunking** — split a document into embeddable pieces, usually with overlap.
+- **Hybrid search** — fuse lexical + semantic scores (e.g. Reciprocal Rank Fusion).
+- **Strategy pattern** — swap embedding/chunking implementations behind one interface.
+
 ---
 
 ## References
