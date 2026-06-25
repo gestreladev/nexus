@@ -37,7 +37,9 @@ snippets must stay **self-consistent**:
 - **When in doubt about the real code, read the file** — don't reconstruct a
   snippet from memory.
 
-A walkthrough's job is to clarify, not to make correct code look wrong.
+A walkthrough's job is to clarify, not to make correct code look wrong. For the
+**presentation** of a PR walkthrough (the required visual widget), see
+[pr_walkthrough.md](../git/pr_walkthrough.md) · `[[pr_walkthrough]]`.
 
 ---
 

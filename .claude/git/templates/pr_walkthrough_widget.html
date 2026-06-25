@@ -1,0 +1,197 @@
+<!--
+  Rule 10 PR-walkthrough widget skeleton. Copy into a single `show_widget` call
+  and fill the {{PLACEHOLDERS}}. Spec: ../pr_walkthrough.md.
+
+  HARD RULES (do not break):
+  - Every changed file in the PR must appear as a row in some group. The group
+    counts must sum to the PR's changed-file count (Rule 10 = full coverage).
+  - One-liners must be accurate to `gh pr diff <n>` — never invented.
+  - CSS variables only (dark-mode safe). Tabler outline icons. Sentence case.
+    No emoji. Font weights 400/500 only. No font-size < 11px.
+  - Groups stream OPEN; the trailing <script> collapses all but group A so
+    nothing is hidden during streaming.
+  - Pick the orientation strip icons/nodes per PR (≤5 nodes). Drop the strip for
+    pure-docs PRs. Drop the proof block if there is no runtime evidence.
+
+  Sections: header → orientation strip → key-change highlight → proof →
+  file map (collapsible groups) → drill-in buttons.
+-->
+<h2 class="sr-only">Walkthrough of pull request {{PR_NUMBER}}: {{ONE_SENTENCE_SUMMARY}}.</h2>
+<style>
+.wt-grp summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 14px}
+.wt-grp summary::-webkit-details-marker{display:none}
+.wt-grp[open] .wt-chev{transform:rotate(90deg)}
+.wt-row{display:flex;gap:10px;padding:7px 14px 7px 46px;font-size:13px;line-height:1.55;border-top:0.5px solid var(--color-border-tertiary)}
+.wt-fn{font-family:var(--font-mono);color:var(--color-text-primary);white-space:nowrap}
+.wt-dsc{color:var(--color-text-secondary)}
+.wt-badge{width:24px;height:24px;border-radius:var(--border-radius-md);background:var(--color-background-info);color:var(--color-text-info);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+</style>
+
+<div style="padding:0.5rem 0 1rem">
+
+  <!-- 1. HEADER -->
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:1rem">
+    <span style="font-size:13px;font-family:var(--font-mono);background:var(--color-background-secondary);padding:3px 9px;border-radius:var(--border-radius-md)">PR #{{PR_NUMBER}}</span>
+    <span style="font-size:15px;font-weight:500">{{PR_TITLE_SHORT}}</span>
+    <span style="font-size:12px;color:var(--color-text-success);background:var(--color-background-success);padding:3px 9px;border-radius:var(--border-radius-md)">milestone {{MILESTONE}}</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:1.5rem">
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.85rem 1rem"><div style="font-size:13px;color:var(--color-text-secondary)">files</div><div style="font-size:24px;font-weight:500">{{FILE_COUNT}}</div></div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.85rem 1rem"><div style="font-size:13px;color:var(--color-text-secondary)">lines</div><div style="font-size:24px;font-weight:500"><span style="color:var(--color-text-success)">+{{ADDS}}</span> <span style="color:var(--color-text-tertiary);font-size:16px">/ −{{DELS}}</span></div></div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.85rem 1rem"><div style="font-size:13px;color:var(--color-text-secondary)">tests</div><div style="font-size:24px;font-weight:500">{{TESTS}}</div></div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.85rem 1rem"><div style="font-size:13px;color:var(--color-text-secondary)">groups</div><div style="font-size:24px;font-weight:500">{{GROUP_COUNT}}</div></div>
+  </div>
+
+  <!-- 2. ORIENTATION STRIP (≤5 nodes; drop for pure-docs PRs) -->
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px">{{STRIP_CAPTION}}</div>
+  <div style="display:flex;align-items:stretch;gap:6px;margin-bottom:1.5rem">
+    <div style="flex:1;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 8px;text-align:center"><i class="ti ti-{{ICON}}" style="font-size:18px;color:var(--color-text-info)" aria-hidden="true"></i><div style="font-size:13px;font-weight:500;margin-top:3px">{{NODE_NAME}}</div><div style="font-size:11px;color:var(--color-text-tertiary)">{{NODE_SUB}}</div></div>
+    <div style="display:flex;align-items:center;color:var(--color-text-tertiary)"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+    <!-- repeat node + arrow as needed -->
+  </div>
+
+  <!-- 3. KEY-CHANGE HIGHLIGHT (one callout; before→after when it helps) -->
+  <div style="background:var(--color-background-info);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1.25rem">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><i class="ti ti-{{FIX_ICON}}" style="font-size:18px;color:var(--color-text-info)" aria-hidden="true"></i><span style="font-weight:500;color:var(--color-text-info)">{{KEY_CHANGE_TITLE}}</span></div>
+    <div style="font-size:14px;color:var(--color-text-info);line-height:1.6">{{KEY_CHANGE_BODY}}</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px;font-family:var(--font-mono);font-size:13px"><span style="background:var(--color-background-danger);color:var(--color-text-danger);padding:2px 10px;border-radius:var(--border-radius-md)">{{BEFORE}}</span><i class="ti ti-arrow-right" style="color:var(--color-text-info)" aria-hidden="true"></i><span style="background:var(--color-background-success);color:var(--color-text-success);padding:2px 10px;border-radius:var(--border-radius-md)">{{AFTER}}</span></div>
+  </div>
+
+  <!-- 4. PROOF (compact flex rows; drop if no runtime evidence) -->
+  <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:8px">{{PROOF_CAPTION}}</div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:1.5rem">
+    <div style="display:flex;align-items:center;gap:10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:9px 12px"><span style="font-size:13px;color:var(--color-text-secondary);flex:1">{{PROOF_LEFT}}</span><i class="ti ti-arrow-right" style="color:var(--color-text-tertiary)" aria-hidden="true"></i><span style="font-size:13px;font-weight:500">{{PROOF_RIGHT}}</span><span style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-success);background:var(--color-background-success);padding:2px 8px;border-radius:var(--border-radius-md)">{{PROOF_METRIC}}</span></div>
+    <!-- repeat proof rows -->
+  </div>
+
+  <!-- 5. FILE MAP (every changed file; group counts must sum to FILE_COUNT) -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:13px;color:var(--color-text-secondary)">the {{FILE_COUNT}} files, by group</span>
+    <button id="wt-toggle" style="font-size:12px;padding:4px 10px">expand all</button>
+  </div>
+  <div id="wt-groups" style="display:flex;flex-direction:column;gap:8px">
+
+    <details class="wt-grp" open style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg)">
+      <summary><i class="ti ti-chevron-right wt-chev" style="color:var(--color-text-tertiary);transition:transform .15s" aria-hidden="true"></i><span class="wt-badge">A</span><span style="font-weight:500;font-size:14px;flex:1">{{GROUP_A_NAME}}</span><span style="font-size:12px;color:var(--color-text-tertiary)">{{GROUP_A_COUNT}}</span></summary>
+      <div class="wt-row"><span class="wt-fn">{{FILE}}</span><span class="wt-dsc">{{INTENT}}</span></div>
+      <!-- repeat row per file in group A -->
+    </details>
+
+    <!-- repeat <details class="wt-grp"> per group B, C, … (NOT open) -->
+
+  </div>
+
+  <!-- 6. DRILL-IN BUTTONS (1–3 deepest-worth files) -->
+  <div style="display:flex;gap:8px;margin-top:1.25rem">
+    <button onclick="sendPrompt('Walk me through {{FILE}} line by line.')" style="font-size:13px">explain <code style="font-family:var(--font-mono)">{{FILE}}</code> in depth ↗</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var groups=[].slice.call(document.querySelectorAll('#wt-groups details'));
+  groups.forEach(function(d,i){ d.open=(i===0); });
+  var btn=document.getElementById('wt-toggle');
+  btn.addEventListener('click',function(){
+    var anyClosed=groups.some(function(d){return !d.open;});
+    groups.forEach(function(d){ d.open=anyClosed; });
+    btn.textContent=anyClosed?'collapse all':'expand all';
+  });
+})();
+</script>
+
+
+<!-- ============================================================ -->
+<!-- CODE VISUALS — optional add-on blocks. Spec: ../pr_walkthrough.md §Code visuals. -->
+<!-- Insert these as "headline hunks" near the key-change highlight (≤2 before the   -->
+<!-- proof section, the rest after the file map). Merge this <style> into the one    -->
+<!-- above. HARD RULES:                                                              -->
+<!--  - Hand-authored markup ONLY. No highlight.js/Prism/<script> highlighter        -->
+<!--    (flashes unstyled mid-stream).                                               -->
+<!--  - 2-4 headline hunks max (hard cap 4), each <=12 diff lines. Overflow goes     -->
+<!--    behind the file-map drill-in.                                                -->
+<!--  - Diff hunk is the DEFAULT. Annotation only when 1-3 lines carry the           -->
+<!--    correctness argument. Never both for one change.                             -->
+<!--  - CSS variables only (dark-mode safe). Text on a colored bg = darkest shade of -->
+<!--    THAT family, never gray. Single-sided border => border-radius:0.             -->
+<!--  - Escape < and & in code. Delete sign + -N stat = U+2212 (&#8722;), not a hyphen. -->
+<!--  - One <pre>, overflow-x:auto, NO nested vertical scroll. Line numbers:         -->
+<!--    removed = old side, added/context = new side.                                -->
+<style>
+.cv-hunks{display:flex;flex-direction:column;gap:12px;margin:1rem 0}
+.hunk-card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.75rem 1rem;font-family:var(--font-sans)}
+.hunk-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.hunk-file{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:12px;color:var(--color-text-primary)}
+.hunk-tag{margin-left:auto;font-size:11px;padding:1px 8px;border-radius:var(--border-radius-md);font-weight:500;background:var(--color-background-info);color:var(--color-text-info)}
+.hunk-tag.is-fix{background:var(--color-background-success);color:var(--color-text-success)}
+.hunk-why{margin:0 0 8px;font-size:13px;line-height:1.5;color:var(--color-text-secondary)}
+.dh-pre{margin:0;overflow-x:auto;background:var(--color-background-secondary);border-radius:var(--border-radius-md);font-family:var(--font-mono);font-size:12.5px;line-height:1.6}
+.dh-row{display:flex;white-space:pre;min-width:max-content}
+.dh-gut{flex:0 0 auto;width:18px;text-align:center;user-select:none;color:var(--color-text-tertiary)}
+.dh-ln{flex:0 0 auto;width:34px;text-align:right;padding-right:10px;user-select:none;color:var(--color-text-tertiary);font-size:11px}
+.dh-code{flex:1 1 auto;padding-right:16px;color:var(--color-text-secondary)}
+.dh-hunk .dh-code{color:var(--color-text-tertiary)}
+.dh-add{background:var(--color-background-success)}
+.dh-add .dh-gut,.dh-add .dh-code{color:var(--color-text-success)}
+.dh-del{background:var(--color-background-danger)}
+.dh-del .dh-gut,.dh-del .dh-code{color:var(--color-text-danger)}
+.tk-k{color:var(--color-text-info)}
+.tk-c{color:var(--color-text-tertiary)}
+.hunk-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.hunk-meta{font-family:var(--font-mono);font-size:11px;color:var(--color-text-tertiary)}
+.s-add{color:var(--color-text-success)}
+.s-del{color:var(--color-text-danger)}
+.hunk-drill{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 10px;background:transparent;border:.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);color:var(--color-text-primary);cursor:pointer}
+.hunk-drill:hover{background:var(--color-background-secondary)}
+.an-wrap{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1rem;margin:1rem 0}
+.an-head{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:0 4px;font-family:var(--font-mono);font-size:12px;color:var(--color-text-secondary)}
+.an-pre{margin:0;overflow-x:auto;background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);font-family:var(--font-mono);font-size:12.5px;line-height:1.7}
+.an-code{display:block;min-width:max-content}
+.an-line{display:block;padding:0 16px 0 44px;color:var(--color-text-secondary)}
+.an-hl{display:flex;align-items:center;padding:0 16px}
+.an-pin{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:500;margin-right:10px;flex:0 0 auto}
+.an-body{padding:1px 8px 1px 6px;display:inline-block;width:100%;border-radius:0}
+.an-notes{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.an-note{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;border-radius:0}
+.an-dot{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:500;flex:0 0 auto;margin-top:1px}
+.an-note p{margin:0;font-size:13px;line-height:1.5}
+.an-note b{font-weight:500}
+.fam-info .an-pin,.fam-info.an-note .an-dot{background:var(--color-background-info);color:var(--color-text-info)}
+.fam-info .an-body,.fam-info.an-note{background:var(--color-background-info);border-left:2px solid var(--color-border-info)}
+.fam-info.an-note p{color:var(--color-text-info)}
+.fam-success .an-pin,.fam-success.an-note .an-dot{background:var(--color-background-success);color:var(--color-text-success)}
+.fam-success .an-body,.fam-success.an-note{background:var(--color-background-success);border-left:2px solid var(--color-border-success)}
+.fam-success.an-note p{color:var(--color-text-success)}
+.fam-warning .an-pin,.fam-warning.an-note .an-dot{background:var(--color-background-warning);color:var(--color-text-warning)}
+.fam-warning .an-body,.fam-warning.an-note{background:var(--color-background-warning);border-left:2px solid var(--color-border-warning)}
+.fam-warning.an-note p{color:var(--color-text-warning)}
+</style>
+
+<!-- A. DIFF HUNK (default code visual) — paste 2-4x. Tag "key change" (info) or is-fix "fix" (success).
+     Token spans (tk-k keyword, tk-c comment) are OPTIONAL; drop them for SQL — the +/- tint carries it. -->
+<section class="cv-hunks" aria-label="Headline changes">
+  <article class="hunk-card">
+    <header class="hunk-head">
+      <span class="hunk-file"><i class="ti ti-file-diff" aria-hidden="true"></i> {{FILE_PATH}}</span>
+      <span class="hunk-tag is-fix">fix</span>
+    </header>
+    <p class="hunk-why">{{ONE_SENTENCE_WHY}}</p>
+    <pre class="dh-pre" aria-label="Diff for {{FILE_PATH}}"><div class="dh-row dh-hunk"><span class="dh-gut"> </span><span class="dh-ln"></span><span class="dh-code">@@ -{{OLD}},{{N}} +{{NEW}},{{M}} @@ {{HEADER}}</span></div><div class="dh-row"><span class="dh-gut"> </span><span class="dh-ln">{{LN}}</span><span class="dh-code">{{CONTEXT_LINE}}</span></div><div class="dh-row dh-del"><span class="dh-gut">&#8722;</span><span class="dh-ln">{{OLD_LN}}</span><span class="dh-code"><span class="tk-k">val</span> {{REMOVED_CODE}}</span></div><div class="dh-row dh-add"><span class="dh-gut">+</span><span class="dh-ln">{{NEW_LN}}</span><span class="dh-code"><span class="tk-c">// {{ADDED_COMMENT}}</span></span></div><div class="dh-row dh-add"><span class="dh-gut">+</span><span class="dh-ln">{{NEW_LN}}</span><span class="dh-code"><span class="tk-k">val</span> {{ADDED_CODE}}</span></div><div class="dh-row"><span class="dh-gut"> </span><span class="dh-ln">{{LN}}</span><span class="dh-code">{{CONTEXT_LINE}}</span></div></pre>
+    <footer class="hunk-foot">
+      <span class="hunk-meta"><span class="s-add">+{{ADDS}}</span> <span class="s-del">&#8722;{{DELS}}</span> &middot; {{HUNK_COUNT}} hunk</span>
+      <button class="hunk-drill" onclick="sendPrompt('Walk me through {{FILE_PATH}}')">View file <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+    </footer>
+  </article>
+</section>
+
+<!-- B. ANNOTATION (1-3 load-bearing lines only) — pin n -> note n via fam-info/fam-success/fam-warning.
+     Each note answers WHY the line matters, not what it does. Don't pin the signature line. -->
+<div class="an-wrap">
+  <div class="an-head"><i class="ti ti-file-code" aria-hidden="true"></i> {{FILE_PATH}}</div>
+  <pre class="an-pre" aria-label="Annotated {{FILE_PATH}}"><code class="an-code"><span class="an-line"><span class="tk-k">def</span> {{SIGNATURE}}:</span><span class="an-hl fam-info"><span class="an-pin">1</span><span class="an-body">{{LOAD_BEARING_LINE_1}}</span></span><span class="an-line">    {{SCAFFOLD_LINE}}</span><span class="an-hl fam-success"><span class="an-pin">2</span><span class="an-body">{{LOAD_BEARING_LINE_2}}</span></span><span class="an-hl fam-warning"><span class="an-pin">3</span><span class="an-body">{{LOAD_BEARING_LINE_3}}</span></span><span class="an-line">    {{SCAFFOLD_LINE}}</span></code></pre>
+  <div class="an-notes">
+    <div class="an-note fam-info"><span class="an-dot">1</span><p><b>{{NOTE_1_LEAD}}</b> {{NOTE_1_WHY}}</p></div>
+    <div class="an-note fam-success"><span class="an-dot">2</span><p><b>{{NOTE_2_LEAD}}</b> {{NOTE_2_WHY}}</p></div>
+    <div class="an-note fam-warning"><span class="an-dot">3</span><p><b>{{NOTE_3_LEAD}}</b> {{NOTE_3_WHY}}</p></div>
+  </div>
+</div>

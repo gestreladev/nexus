@@ -30,10 +30,12 @@ metadata:
 ## Post-open walkthrough
 The mandatory order once a PR exists:
 ```
-open PR  →  explain all PR files (line by line)  →  review  →  merge
+open PR  →  walkthrough WIDGET (all files)  →  review  →  squash merge
 ```
 No PR skips the walkthrough — it applies to code, config, and `.claude` docs
-alike. See [CLAUDE.md](../CLAUDE.md) · `[[CLAUDE]]` Rule 10.
+alike, and is presented as a **visual widget** (not a text wall): see
+[pr_walkthrough.md](pr_walkthrough.md) · `[[pr_walkthrough]]` for the required
+sections + skeleton, and [CLAUDE.md](../CLAUDE.md) · `[[CLAUDE]]` Rule 10.
 
 ---
 
