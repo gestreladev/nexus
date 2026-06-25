@@ -39,6 +39,7 @@ governed by [model_decision.md](../configurations/model_decision.md) · `[[model
 | Branching | Branch naming, strategy, protection rules | [branching.md](branching.md) · `[[branching]]` |
 | Commits | Conventional Commits format, types, scopes | [commits.md](commits.md) · `[[commits]]` |
 | Pull Requests | PR titles, templates, merge strategy, labels | [pull_requests.md](pull_requests.md) · `[[pull_requests]]` |
+| PR walkthrough | Required visual-widget presentation (Rule 10) + skeleton | [pr_walkthrough.md](pr_walkthrough.md) · `[[pr_walkthrough]]` |
 | Versioning | Semver strategy, release process, changelog, tags | [versioning.md](versioning.md) · `[[versioning]]` |
 | Milestones | Semver → milestone mapping, closure criteria | [milestones.md](milestones.md) · `[[milestones]]` |
 

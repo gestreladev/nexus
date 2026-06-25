@@ -131,6 +131,11 @@ line by line, explaining each in detail — before the PR is reviewed or merged.
 - Go in dependency/readable order; explain the intent of each meaningful line or
   block, not just a summary.
 - Use the PR diff as the source of truth (`gh pr diff <n>` / `git diff`), not memory.
+- **Present it as a visual walkthrough widget** (`show_widget`), not a text wall —
+  header/stats, orientation strip, key-change highlight, proof, and the complete
+  file map as collapsible groups. The group counts must sum to the PR's file
+  count (full coverage). Spec + skeleton:
+  [pr_walkthrough.md](git/pr_walkthrough.md) · `[[pr_walkthrough]]`.
 - The PR does not proceed to merge until its files have been explained.
 
 See [pull_requests.md](git/pull_requests.md) · `[[pull_requests]]` for where this
