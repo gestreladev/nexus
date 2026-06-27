@@ -11,6 +11,7 @@ data class Document(
     val id: UUID,
     val userId: UUID,
     val title: String,
+    val content: String,
     val status: DocumentStatus,
     val createdAt: OffsetDateTime,
     val updatedAt: OffsetDateTime,
@@ -19,6 +20,7 @@ data class Document(
 data class CreateDocumentRequest(
     val userId: UUID,
     val title: String,
+    val content: String,
 )
 
 class DocumentRepository {
@@ -28,6 +30,7 @@ class DocumentRepository {
         val id = DocumentTable.insert {
             it[userId]    = request.userId
             it[title]     = request.title
+            it[content]   = request.content
             it[status]    = DocumentStatus.pending.name
             it[createdAt] = now
             it[updatedAt] = now
@@ -56,6 +59,7 @@ class DocumentRepository {
         id        = this[DocumentTable.id],
         userId    = this[DocumentTable.userId],
         title     = this[DocumentTable.title],
+        content   = this[DocumentTable.content],
         status    = DocumentStatus.valueOf(this[DocumentTable.status]),
         createdAt = this[DocumentTable.createdAt],
         updatedAt = this[DocumentTable.updatedAt],

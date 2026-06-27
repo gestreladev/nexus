@@ -78,6 +78,7 @@ services:
       REDIS_URL: redis://redis:6379
       KAFKA_BOOTSTRAP_SERVERS: kafka:29092              # INTERNAL listener
       JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}  # never a committed literal
+      DB_MIGRATIONS_LOCATION: filesystem:/app/db/migration  # fat-jar classpath scan mis-resolves names
     ports:
       - "8080:8080"
     mem_limit: 768m
@@ -95,20 +96,23 @@ services:
     restart: unless-stopped
     init: true                     # PID-1 reaper → uvicorn gets a clean SIGTERM to drain
     depends_on:
+      postgres: { condition: service_healthy }
       kafka: { condition: service_healthy }
     environment:
       NEXUS_ENVIRONMENT: docker
       NEXUS_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       NEXUS_KAFKA_DOCUMENT_TOPIC: document.uploaded
+      NEXUS_DB_DSN: postgresql://nexus:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/nexus
+      NEXUS_EMBEDDING_PROVIDER: local          # local model baked into the image
     ports:
       - "8081:8081"
-    mem_limit: 384m
+    mem_limit: 2g                  # torch + the 1024-dim mxbai model
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://localhost:8081/v1/health"]
       interval: 10s
       timeout: 5s
-      retries: 10
-      start_period: 20s
+      retries: 12
+      start_period: 120s
 
 volumes:
   nexus-postgres-data:

@@ -21,10 +21,10 @@ metadata:
 | Field | Value |
 |---|---|
 | Released | `v0.3.0` tagged; `v0.4.0`–`v0.8.0` merged to `main` (untagged) |
-| Last lesson | **Lesson 9 — Containers & Architecture** ✅ (see log) |
-| Next lesson | **Lesson 10 — Search & Vectors** (Phase 9 → `v0.9.0`) |
-| Active branch | `feat/phase-8-containers` (whole system in Docker, 5 services healthy) |
-| Open gaps | R3 type-checker-vs-Protocols (re-surface); coverage + HTTP cache headers deferred; `/v1/health` version is a manual `application.yaml` value (now 0.8.0), not wired to build metadata |
+| Last lesson | **Lesson 10 — Search & Vectors** ✅ (semantic search proven live) |
+| Next lesson | **Lesson 11 — Observability** (Phase 10 → `v0.10.0`) |
+| Active branch | `feat/phase-9-search` (uncommitted; PR #20 for phase-8 still open) |
+| Open gaps | R3 type-checker-vs-Protocols (re-surface); full-text/hybrid deferred; coverage + HTTP cache headers deferred; `/v1/health` version not wired to build metadata |
 
 ## Done
 - ✅ Phase 0 — repo, structure, conventions
@@ -42,6 +42,9 @@ metadata:
   (`v0.7.0`, PR #19)
 - ✅ Phase 8 — whole system containerized; one `docker compose up` runs 5 healthy
   services; multi-stage images, 12-factor config, Kafka dual-listener (`v0.8.0`)
+- ✅ Phase 9 — vector search: `document_chunks` (pgvector + HNSW), `nexus-ingest`
+  pipeline (chunk→embed→upsert) + `GET /v1/search`; embedding Strategy
+  (local/Voyage/fake); semantic search proven live (`v0.9.0`)
 - ✅ Tooling — `.claude` vault (fundamentals, languages, lessons, project, infra,
   security, caching), GoF Kotlin + Python trees, PR templates, labels, milestones
 
@@ -50,9 +53,10 @@ metadata:
 - Phase 5: JaCoCo coverage reporting deferred
 
 ## Next action
-Start **Lesson 10 — Search & Vectors** (Phase 9): pgvector schema + embeddings in
-`nexus-ingest`, vector similarity search, full-text baseline, chunking/embedding
-strategies (Strategy pattern). Branch `feat/phase-9-search`, milestone `v0.9.0`.
+Commit `feat/phase-9-search` + open the `v0.9.0` PR (when ready), then start
+**Lesson 11 — Observability** (Phase 10): OpenTelemetry traces/metrics across
+nexus-api + nexus-ingest, Grafana. Branch `feat/phase-10-observability`,
+milestone `v0.10.0`.
 
 ## Backlog (deferred)
 - Reverse proxy (nginx/Caddy) + circuit-breaker as code (Phase 8 concepts only).

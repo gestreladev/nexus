@@ -43,6 +43,23 @@ A walkthrough's job is to clarify, not to make correct code look wrong. For the
 
 ---
 
+## Mandatory Rule — pt-BR translation on difficulty
+When the learner signals difficulty with a topic (says they didn't understand,
+struggled, or "had a hard time"), **re-explain that topic in Brazilian
+Portuguese (pt-BR)** — not just the English again:
+- Lead with a concise pt-BR explanation grounded in a concrete analogy; keep
+  Nexus/code identifiers (`kafka:29092`, `${VAR:?}`) and accepted technical
+  terms in their original form.
+- Then give a one-line English↔pt-BR term bridge for the key vocabulary, so the
+  English names still stick.
+- Log the topic as a gap in the lesson `log/` and re-surface it (in pt-BR if
+  still shaky) at the next retrieval step until solid.
+
+The goal is comprehension first; the learner is fluent in pt-BR, so a second
+language channel removes the bottleneck without dumbing the content down.
+
+---
+
 ## Routing Table
 
 | Area | Scope | Document |
@@ -69,6 +86,7 @@ A walkthrough's job is to clarify, not to make correct code look wrong. For the
 | 7 | 6 | Python Service: nexus-ingest, FastAPI | [lesson_07_python_service.md](log/lesson_07_python_service.md) · `[[lesson_07_python_service]]` | ✅ |
 | 8 | 7 | Async & Messaging: Kafka producer → consumer | [lesson_08_messaging.md](log/lesson_08_messaging.md) · `[[lesson_08_messaging]]` | ✅ |
 | 9 | 8 | Containers & Architecture: Docker Compose, microservices | [lesson_09_containers.md](log/lesson_09_containers.md) · `[[lesson_09_containers]]` | ✅ |
+| 10 | 9 | Search & Vectors: embeddings, pgvector, Strategy | [lesson_10_search.md](log/lesson_10_search.md) · `[[lesson_10_search]]` | ✅ |
 
 ---
 

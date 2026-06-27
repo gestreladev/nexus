@@ -17,13 +17,19 @@ metadata:
 ## Layout
 ```
 nexus-ingest/
-├── pyproject.toml        deps + tooling (uv, ruff, mypy, pytest)
+├── pyproject.toml        deps + tooling (uv, ruff, mypy, pytest); embed-local/voyage extras
+├── Dockerfile            multi-stage; bakes the local model into HF_HOME
 ├── app/
-│   ├── main.py           create_app() + Uvicorn `app` (entry point)
+│   ├── main.py           create_app() + lifespan wires db/embedder/consumer
 │   ├── config.py         env-driven Settings (pydantic-settings)
 │   ├── errors.py         ErrorResponse + handlers (single error shape)
-│   └── routes/v1/        versioned routers (health.py …)
-└── tests/                pytest (no external services)
+│   ├── db.py             asyncpg + pgvector: fetch content, upsert chunks, search
+│   ├── ingest.py         Ingestor: fetch → chunk → embed → idempotent upsert
+│   ├── embeddings/       EmbeddingStrategy + Local/Voyage/Fake + factory
+│   ├── chunking/         ChunkingStrategy + CharacterChunker
+│   ├── messaging/        DocumentConsumer (drives the Ingestor)
+│   └── routes/v1/        versioned routers (health.py, search.py …)
+└── tests/                pytest (unit + a live-Postgres integration test)
 ```
 
 ## Parity map (Ktor → FastAPI)

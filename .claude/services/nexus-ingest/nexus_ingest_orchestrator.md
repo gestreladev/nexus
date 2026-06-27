@@ -46,6 +46,9 @@ shape, same `/v1/health`). Python 3.13. Model selection:
 | Area | Scope | Document |
 |---|---|---|
 | Architecture | App layout + the nexus-api parity map | [ingest_architecture.md](ingest_architecture.md) · `[[ingest_architecture]]` |
+| Embedding strategies | Local/Voyage/Fake adapters behind one Strategy; dim 1024 | [embedding_strategies.md](embedding_strategies.md) · `[[embedding_strategies]]` |
+| Chunking | ChunkingStrategy + CharacterChunker (size/overlap) | [chunking.md](chunking.md) · `[[chunking]]` |
+| Search endpoint | `GET /v1/search` — embed query → vector NN | [search_endpoint.md](search_endpoint.md) · `[[search_endpoint]]` |
 
 ---
 

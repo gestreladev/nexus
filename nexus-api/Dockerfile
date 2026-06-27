@@ -19,6 +19,9 @@ RUN apt-get update \
 USER appuser
 WORKDIR /app
 COPY --from=build --chown=appuser:appuser /build/build/libs/nexus-api-all.jar app.jar
+# Flyway reads migrations from the filesystem in-container (fat-jar classpath
+# scanning mis-resolves the names); DB_MIGRATIONS_LOCATION points here.
+COPY --from=build --chown=appuser:appuser /build/src/main/resources/db/migration/ db/migration/
 EXPOSE 8080
 # Image-level health so any runtime (plain docker run / Swarm) sees readiness,
 # not just compose. --start-period covers JVM boot + Flyway migrations.

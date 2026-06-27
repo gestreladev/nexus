@@ -8,6 +8,7 @@ object DocumentTable : Table("documents") {
     val id        = uuid("id").autoGenerate()
     val userId    = uuid("user_id").references(UserTable.id)
     val title     = varchar("title", 500)
+    val content   = text("content").default("")
     val status    = varchar("status", 50).default("pending")
     val createdAt = timestampWithTimeZone("created_at")
     val updatedAt = timestampWithTimeZone("updated_at")

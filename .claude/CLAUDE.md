@@ -31,14 +31,14 @@ governed by [model_decision.md](configurations/model_decision.md) · `[[model_de
 | Local path | `~/Projects/backend/roadmap/nexus/` |
 | GitHub account | `gestreladev` (SSH host alias: `github-gestreladev`) |
 | Git remote | `git@github-gestreladev:gestreladev/nexus.git` |
-| Current version | `0.8.0` |
+| Current version | `0.9.0` |
 
 ### Services
 
 | Service | Path | Language | Framework | Port | Status |
 |---|---|---|---|---|---|
-| `nexus-api` | `nexus-api/` | Kotlin 2.1.21 | Ktor 3.1.3 / Netty | 8080 | ✅ v0.8.0 (containerized) |
-| `nexus-ingest` | `nexus-ingest/` | Python 3.13 | FastAPI / Uvicorn | 8081 | ✅ v0.8.0 (consumer, containerized) |
+| `nexus-api` | `nexus-api/` | Kotlin 2.1.21 | Ktor 3.1.3 / Netty | 8080 | ✅ v0.9.0 (content + claim-check) |
+| `nexus-ingest` | `nexus-ingest/` | Python 3.13 | FastAPI / Uvicorn | 8081 | ✅ v0.9.0 (embed + vector search) |
 | `nexus-search` | `nexus-search/` | Python 3.12+ | FastAPI | 8082 | ⏳ v0.11.0 |
 
 ### Infrastructure
