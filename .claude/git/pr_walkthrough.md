@@ -21,6 +21,17 @@ into response text or behind drill-in buttons.
 
 Skeleton to copy: [pr_walkthrough_widget.html](templates/pr_walkthrough_widget.html).
 
+## Two standing mandates
+- **Always in pt-BR.** Every widget caption, section label, file one-liner, and
+  "why" line is Brazilian Portuguese (the learner's language — see
+  [lesson_orchestrator.md](../lessons/lesson_orchestrator.md) · `[[lesson_orchestrator]]`).
+  Code, identifiers, diff contents, and accepted technical terms (`HNSW`,
+  `ON CONFLICT`, `Strategy`) stay as-is — code is code.
+- **Always show real diffs.** The widget MUST include the actual changed lines of
+  the headline files as **diff hunks** (taken from `gh pr diff <n>`), not just
+  prose descriptions. A walkthrough with no code diff is incomplete. At least the
+  key change is shown as a diff; see §Code visuals for the budget.
+
 ---
 
 ## Required sections (in order)
@@ -31,7 +42,7 @@ Skeleton to copy: [pr_walkthrough_widget.html](templates/pr_walkthrough_widget.h
    Tabler icons). Omit only when the PR has no meaningful flow (pure docs).
 3. **Key-change highlight** — one callout for the single most important or subtle
    change; use a before→after pair when it clarifies (e.g. `3 → 30 plugins`), and
-   back it with a **diff hunk** (see §Code visuals) when the exact lines matter.
+   **always back it with a diff hunk** of the real changed lines (§Code visuals).
 4. **Verification / proof** — the evidence it works as compact rows (test counts,
    live results, query→result). Not a `<table>` — flex rows.
 5. **Complete file map** — **every** changed file, grouped (A, B, C…). Each group
@@ -65,10 +76,11 @@ the reviewer would otherwise open the file to see the exact line. Three forms, o
 vocabulary (classes live in the skeleton).
 
 ### Which form
-- **Diff hunk** (`.hunk-card` + `.dh-*`) — the **default**. For "does this line do
-  the right thing?": a flipped boolean, new guard, off-by-one, signature change,
+- **Diff hunk** (`.hunk-card` + `.dh-*`) — **required**, the primary visual; at
+  least one per walkthrough (the key change). For "does this line do the right
+  thing?": a flipped boolean, new guard, off-by-one, signature change,
   concat→parameterized swap. Removed/added lines adjacent; hand-authored unified
-  diff in one `<pre>`.
+  diff in one `<pre>`. New files show their key lines as `+` additions.
 - **Annotation** (`.an-*` + `.fam-*`) — secondary, only when **1–3** lines carry
   the correctness argument (invariant, lock, atomic op, tenant `WHERE`). Each note
   says **why** the line matters, not what it does. Never pin the signature line.
@@ -79,8 +91,8 @@ A syntax-only snippet (no diff, no pins) rarely earns a headline slot — reuse 
 `.tk-*` token spans inside a hunk instead.
 
 ### Budget (anti-code-dump)
-- **2–4 headline hunks** max (hard cap 4), each **≤12 diff lines** (~8 ideal).
-  Past 4 it reads as a diff viewer, not a walkthrough.
+- **1–4 headline hunks** (≥1 required, hard cap 4), each **≤12 diff lines**
+  (~8 ideal). Past 4 it reads as a diff viewer, not a walkthrough.
 - A hunk anchors to the key-change bullet it proves: claim → hunk → proof → file
   map. ≤2 hunks before the proof section, the rest after.
 - Everything past the budget moves **behind the file-map drill-in**
