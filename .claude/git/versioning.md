@@ -29,7 +29,7 @@ Follows **Semantic Versioning 2.0.0** (`MAJOR.MINOR.PATCH`).
 
 ## Current version
 
-`0.3.0` — released.
+`0.9.0` — released (tagged). `0.10.0` in progress (Phase 10).
 
 ## Version history
 
@@ -38,6 +38,13 @@ Follows **Semantic Versioning 2.0.0** (`MAJOR.MINOR.PATCH`).
 | `v0.1.0` | ✅ released | First Service | Ktor scaffold, health endpoint, ModulePipeline DSL |
 | `v0.2.0` | ✅ released | Database Layer | PostgreSQL, Flyway, Exposed, HikariCP |
 | `v0.3.0` | ✅ released | Auth & Security | bcrypt, JWT, register/login/me, integration tests |
+| `v0.4.0` | ✅ merged | Caching | Redis cache-aside + JWT denylist (Lettuce) |
+| `v0.5.0` | ✅ merged | Testing & CI/CD | unit + fakes, GitHub Actions service containers |
+| `v0.6.0` | ✅ merged | Python Service | `nexus-ingest` FastAPI scaffold; Python GoF tree |
+| `v0.7.0` | ✅ merged | Async & Messaging | Kafka produce → consume flow |
+| `v0.8.0` | ✅ merged | Containers | whole system in Docker Compose; one `up` |
+| `v0.9.0` | ✅ released | Search & Vectors | pgvector + HNSW, embed Strategy, `/v1/search` |
+| `v0.10.0` | 🔄 in progress | Observability | OTel tracing across services (Session A) |
 
 ---
 

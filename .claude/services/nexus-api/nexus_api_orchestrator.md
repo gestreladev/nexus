@@ -35,7 +35,8 @@ Model selection governed by
 | Database | PostgreSQL 17 via Exposed + HikariCP + Flyway |
 | Port | 8080 |
 | Container | multi-stage `Dockerfile` (Temurin 17, non-root); runs in Compose with 12-factor env + `/v1/health` healthcheck |
-| Version | v0.8.0 |
+| Observability | zero-code OTel **Java agent** (`JAVA_TOOL_OPTIONS`) → traces Ktor/JDBC/Kafka-producer (injects `traceparent`); OTLP to `lgtm:4318` |
+| Version | v0.9.0 |
 
 ---
 

@@ -19,6 +19,7 @@ from app.ingest import Ingestor
 from app.messaging.consumer import DocumentConsumer
 from app.routes.v1.health import router as health_router
 from app.routes.v1.search import router as search_router
+from app.telemetry import init_telemetry
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("nexus-ingest")
@@ -26,6 +27,7 @@ log = logging.getLogger("nexus-ingest")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    init_telemetry(app)   # FIRST: must patch asyncpg/aiokafka before they're built
     db = Database(settings.db_dsn)
     await db.connect()
     embedder = build_embedder(settings)   # local | voyage | fake — loads the model

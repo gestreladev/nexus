@@ -48,7 +48,7 @@ governed by [model_decision.md](configurations/model_decision.md) · `[[model_de
 | Relational DB | PostgreSQL 17 + pgvector (port 5433) | ✅ running |
 | Cache | Redis 7 | ✅ v0.4.0 |
 | Messaging | Kafka (KRaft, dual-listener) | ✅ v0.7.0 |
-| Observability | OpenTelemetry + Grafana | ⏳ v0.10.0 |
+| Observability | OpenTelemetry + Grafana LGTM | 🔄 v0.10.0 (tracing live; metrics/logs next) |
 | Container | Docker Compose — whole system, one `up` | ✅ v0.8.0 |
 
 ### Build tooling — nexus-api

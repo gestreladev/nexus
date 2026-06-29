@@ -37,6 +37,7 @@ governed by [model_decision.md](../configurations/model_decision.md) · `[[model
 |---|---|---|
 | Docker | Images, Dockerfiles, Compose, volumes, best practices | [docker_orchestrator.md](docker/docker_orchestrator.md) · `[[docker_orchestrator]]` |
 | Redis | In-memory backing service — cache, denylist, sessions | [redis_orchestrator.md](redis/redis_orchestrator.md) · `[[redis_orchestrator]]` |
+| Observability stack | The `grafana/otel-lgtm` backend + OTLP wiring (Phase 10) | [observability_stack.md](observability_stack.md) · `[[observability_stack]]` |
 
 ---
 

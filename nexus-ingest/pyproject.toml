@@ -11,6 +11,12 @@ dependencies = [
     "aiokafka>=0.11",
     "asyncpg>=0.30",
     "pgvector>=0.4",
+    # Observability (Phase 10) — traces over OTLP/HTTP to the LGTM collector.
+    "opentelemetry-sdk>=1.38",
+    "opentelemetry-exporter-otlp-proto-http>=1.38",
+    "opentelemetry-instrumentation-fastapi>=0.59b0",
+    "opentelemetry-instrumentation-aiokafka>=0.59b0",
+    "opentelemetry-instrumentation-asyncpg>=0.59b0",
 ]
 
 [project.optional-dependencies]
@@ -45,5 +51,8 @@ python_version = "3.13"
 strict = true
 
 [[tool.mypy.overrides]]
-module = ["aiokafka.*", "asyncpg.*", "pgvector.*", "sentence_transformers.*", "voyageai.*"]
+module = [
+    "aiokafka.*", "asyncpg.*", "pgvector.*", "sentence_transformers.*", "voyageai.*",
+    "opentelemetry.instrumentation.*",
+]
 ignore_missing_imports = true

@@ -20,11 +20,11 @@ metadata:
 ## Current state
 | Field | Value |
 |---|---|
-| Released | `v0.3.0` tagged; `v0.4.0`–`v0.8.0` merged to `main` (untagged) |
-| Last lesson | **Lesson 10 — Search & Vectors** ✅ (semantic search proven live) |
-| Next lesson | **Lesson 11 — Observability** (Phase 10 → `v0.10.0`) |
-| Active branch | `feat/phase-9-search` (uncommitted; PR #20 for phase-8 still open) |
-| Open gaps | R3 type-checker-vs-Protocols (re-surface); full-text/hybrid deferred; coverage + HTTP cache headers deferred; `/v1/health` version not wired to build metadata |
+| Released | `v0.9.0` tagged; `v0.4.0`–`v0.9.0` milestones closed |
+| Current lesson | **Lesson 11 — Observability** 🔄 (Phase 10, Session A ✅ tracing live) |
+| Next | **Session B** — metrics (RED) + structured logs + log↔trace correlation |
+| Active branch | `feat/phase-10-observability` (uncommitted Session A) |
+| Open gaps | R2 retrieval-asymmetry + E1 traces-not-logs (re-surface); full-text/hybrid deferred; `/v1/health` version not wired to build metadata |
 
 ## Done
 - ✅ Phase 0 — repo, structure, conventions
@@ -44,19 +44,21 @@ metadata:
   services; multi-stage images, 12-factor config, Kafka dual-listener (`v0.8.0`)
 - ✅ Phase 9 — vector search: `document_chunks` (pgvector + HNSW), `nexus-ingest`
   pipeline (chunk→embed→upsert) + `GET /v1/search`; embedding Strategy
-  (local/Voyage/fake); semantic search proven live (`v0.9.0`)
+  (local/Voyage/fake); semantic search proven live (`v0.9.0`, tagged + released)
+- 🔄 Phase 10 — observability **Session A**: OTel tracing across both services
+  (Java agent + Python SDK), traceparent across Kafka, Grafana LGTM backend;
+  one upload verified as a single 14-span trace (`v0.10.0`)
 - ✅ Tooling — `.claude` vault (fundamentals, languages, lessons, project, infra,
-  security, caching), GoF Kotlin + Python trees, PR templates, labels, milestones
+  security, caching), GoF Kotlin + Python trees, PR-walkthrough standard, labels, milestones
 
 ## In progress
 - Phase 4: HTTP caching headers deferred until public read endpoints exist
 - Phase 5: JaCoCo coverage reporting deferred
 
 ## Next action
-Commit `feat/phase-9-search` + open the `v0.9.0` PR (when ready), then start
-**Lesson 11 — Observability** (Phase 10): OpenTelemetry traces/metrics across
-nexus-api + nexus-ingest, Grafana. Branch `feat/phase-10-observability`,
-milestone `v0.10.0`.
+**Lesson 11 — Session B** (Phase 10): flip `OTEL_METRICS_EXPORTER=otlp`, build a
+RED Grafana dashboard (rate/errors/p99), structured JSON logs carrying `trace_id`,
+and log↔trace correlation in Loki/Grafana. Then milestone `v0.10.0` merge.
 
 ## Backlog (deferred)
 - Reverse proxy (nginx/Caddy) + circuit-breaker as code (Phase 8 concepts only).

@@ -117,6 +117,18 @@ Concepts introduced in lessons, newest phase last. Grows each lesson.
 - **Hybrid search** — fuse lexical + semantic scores (e.g. Reciprocal Rank Fusion).
 - **Strategy pattern** — swap embedding/chunking implementations behind one interface.
 
+## Phase 10 — Observability
+- **Observability** — inferring internal state from outputs; "up" ≠ "working well".
+- **Three pillars** — logs (what happened), metrics (how much/often), traces (one request's path).
+- **Trace / span** — a request as a tree of timed operations; span = one op.
+- **Context propagation** — carrying `trace_id`+`parent_span_id` across boundaries.
+- **W3C traceparent** — `00-traceid-spanid-flags`; rides Kafka headers producer→consumer.
+- **OpenTelemetry (OTel)** — vendor-neutral standard; instrument once, export anywhere.
+- **OTLP** — the OTel wire protocol (gRPC 4317 / HTTP 4318).
+- **RED** — Rate, Errors, Duration; service-level golden signals.
+- **Percentile (p99)** — tail latency; the average hides the slow requests users feel.
+- **Structured logging** — JSON logs with `trace_id` so logs correlate to traces.
+
 ---
 
 ## References
