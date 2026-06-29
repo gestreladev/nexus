@@ -63,6 +63,26 @@ services:
       timeout: 5s
       retries: 12
 
+  # Observability backend (Phase 10): one image bundling the OTel Collector +
+  # Tempo (traces) + Loki (logs) + Prometheus (metrics) + provisioned Grafana.
+  lgtm:
+    image: grafana/otel-lgtm:0.11.16
+    container_name: nexus-lgtm
+    restart: unless-stopped
+    ports:
+      - "3000:3000"   # Grafana UI (admin/admin)
+      - "4317:4317"   # OTLP/gRPC
+      - "4318:4318"   # OTLP/HTTP
+    volumes:
+      - nexus-lgtm-data:/data
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3000/api/health"]  # image has curl, not wget
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
   nexus-api:
     build: ./nexus-api
     container_name: nexus-api
@@ -71,6 +91,7 @@ services:
       postgres: { condition: service_healthy }
       redis: { condition: service_healthy }
       kafka: { condition: service_healthy }
+      lgtm: { condition: service_healthy }
     environment:
       DB_URL: jdbc:postgresql://postgres:5432/nexus     # service-name host, not localhost
       DB_USER: nexus
@@ -79,6 +100,14 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka:29092              # INTERNAL listener
       JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}  # never a committed literal
       DB_MIGRATIONS_LOCATION: filesystem:/app/db/migration  # fat-jar classpath scan mis-resolves names
+      # OpenTelemetry (read by the Java agent). Traces-only for Session A.
+      OTEL_SERVICE_NAME: nexus-api
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://lgtm:4318
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_METRICS_EXPORTER: none      # flip to otlp in Session B
+      OTEL_LOGS_EXPORTER: none
+      OTEL_RESOURCE_ATTRIBUTES: service.namespace=nexus,deployment.environment.name=docker,service.version=0.9.0
     ports:
       - "8080:8080"
     mem_limit: 768m
@@ -98,12 +127,16 @@ services:
     depends_on:
       postgres: { condition: service_healthy }
       kafka: { condition: service_healthy }
+      lgtm: { condition: service_healthy }
     environment:
       NEXUS_ENVIRONMENT: docker
       NEXUS_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       NEXUS_KAFKA_DOCUMENT_TOPIC: document.uploaded
       NEXUS_DB_DSN: postgresql://nexus:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/nexus
       NEXUS_EMBEDDING_PROVIDER: local          # local model baked into the image
+      # OpenTelemetry (read by the OTel SDK in app/telemetry.py).
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://lgtm:4318
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
     ports:
       - "8081:8081"
     mem_limit: 2g                  # torch + the 1024-dim mxbai model
@@ -117,3 +150,4 @@ services:
 volumes:
   nexus-postgres-data:
   nexus-redis-data:
+  nexus-lgtm-data:

@@ -37,7 +37,8 @@ shape, same `/v1/health`). Python 3.13. Model selection:
 | Packaging | `pyproject.toml` + `uv` venv |
 | Port | 8081 |
 | Container | multi-stage `Dockerfile` (`python:3.13-slim`, non-root, `uv` venv); runs in Compose with `NEXUS_*` 12-factor env + `/v1/health` healthcheck |
-| Status | `v0.7.0` Kafka consumer · `v0.8.0` containerized — `/v1/health` |
+| Observability | OTel SDK (`app/telemetry.py`) — FastAPI/aiokafka/asyncpg instrumented; consumer **extracts** `traceparent` from Kafka headers + a manual `embed` span; OTLP to `lgtm:4318` |
+| Status | `v0.9.0` embed + vector search · `v0.10.0` traced (Session A) |
 
 ---
 

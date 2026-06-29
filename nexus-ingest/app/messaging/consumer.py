@@ -10,11 +10,14 @@ import json
 import logging
 
 from aiokafka import AIOKafkaConsumer
+from opentelemetry import trace
+from opentelemetry.propagate import extract
 
 from app.config import settings
 from app.ingest import Ingestor
 
 log = logging.getLogger("nexus-ingest")
+tracer = trace.get_tracer("nexus-ingest")
 
 
 class DocumentConsumer:
@@ -40,7 +43,15 @@ class DocumentConsumer:
         assert self._consumer is not None
         try:
             async for msg in self._consumer:
-                await self._handle(msg.value, msg.partition, msg.offset)
+                # Continue the producer's trace: the Kafka producer stamped a W3C
+                # `traceparent` into the message headers; extract it and make it the
+                # parent of this message's processing, so the embed/upsert spans join
+                # the same trace that began in nexus-api (across the Kafka boundary).
+                carrier = {k: v.decode() for k, v in (msg.headers or ())}
+                with tracer.start_as_current_span(
+                    "document.uploaded process", context=extract(carrier)
+                ):
+                    await self._handle(msg.value, msg.partition, msg.offset)
         except asyncio.CancelledError:
             pass
 

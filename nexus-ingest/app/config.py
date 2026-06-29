@@ -31,5 +31,9 @@ class Settings(BaseSettings):
     chunk_size: int = 800
     chunk_overlap: int = 120
 
+    # Observability — OTLP endpoint comes from OTEL_EXPORTER_OTLP_* env (OTel SDK).
+    # NEXUS_OTEL_ENABLED=false turns tracing off for local non-docker runs.
+    otel_enabled: bool = True
+
 
 settings = Settings()

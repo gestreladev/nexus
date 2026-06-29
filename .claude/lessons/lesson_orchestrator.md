@@ -87,6 +87,7 @@ language channel removes the bottleneck without dumbing the content down.
 | 8 | 7 | Async & Messaging: Kafka producer → consumer | [lesson_08_messaging.md](log/lesson_08_messaging.md) · `[[lesson_08_messaging]]` | ✅ |
 | 9 | 8 | Containers & Architecture: Docker Compose, microservices | [lesson_09_containers.md](log/lesson_09_containers.md) · `[[lesson_09_containers]]` | ✅ |
 | 10 | 9 | Search & Vectors: embeddings, pgvector, Strategy | [lesson_10_search.md](log/lesson_10_search.md) · `[[lesson_10_search]]` | ✅ |
+| 11 | 10 | Observability: OpenTelemetry, tracing, RED, logs | [lesson_11_observability.md](log/lesson_11_observability.md) · `[[lesson_11_observability]]` | 🔄 |
 
 ---
 

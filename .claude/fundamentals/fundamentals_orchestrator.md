@@ -35,6 +35,7 @@ Model selection governed by
 | Caching | Cache-aside, invalidation, TTL/eviction, stampede, HTTP caching | 5 | [caching_orchestrator.md](caching/caching_orchestrator.md) · `[[caching_orchestrator]]` |
 | Messaging | Brokers, Kafka, delivery/ordering, real-time (WS/SSE) | 8 | [messaging_orchestrator.md](messaging/messaging_orchestrator.md) · `[[messaging_orchestrator]]` |
 | Architecture | Monolith/microservices/SOA/serverless, 12-factor, service mesh, circuit breaker | 9 | [architecture_fundamentals_orchestrator.md](architecture/architecture_fundamentals_orchestrator.md) · `[[architecture_fundamentals_orchestrator]]` |
+| Observability | Three pillars, OpenTelemetry, distributed tracing, RED metrics, structured logs | 11 | [observability_orchestrator.md](observability/observability_orchestrator.md) · `[[observability_orchestrator]]` |
 | Search | Lexical vs semantic, embeddings, ANN/HNSW, pgvector, hybrid | 10 | [search_orchestrator.md](search/search_orchestrator.md) · `[[search_orchestrator]]` |
 
 ---
