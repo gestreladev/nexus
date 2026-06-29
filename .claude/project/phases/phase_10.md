@@ -15,23 +15,25 @@ metadata:
 
 | Field | Value |
 |---|---|
-| Version | `v0.10.0` 🔄 |
+| Version | `v0.10.0` ✅ |
 | Lesson | 11 |
 | Topics | monitoring, observability, telemetry, instrumentation, profiling-performance |
-| Status | 🔄 Session A ✅ (tracing live + verified); Session B = metrics + logs |
+| Status | ✅ all three pillars live + verified in the LGTM stack |
 
 ## Deliverables
-- [x] OpenTelemetry tracing across all services (Java agent + Python SDK)
+- [x] OpenTelemetry **tracing** across all services (Java agent + Python SDK)
 - [x] Trace a request end-to-end (one `trace_id`, 14 spans, across Kafka) — verified
 - [x] Grafana LGTM backend (`grafana/otel-lgtm`) in compose
-- [ ] Metrics + RED Grafana dashboard (Session B)
-- [ ] Structured JSON logs with `trace_id` correlation (Session B)
+- [x] **Metrics** (RED) — custom counter/histogram + auto HTTP/JVM; p95 computed in Prometheus
+- [x] **Structured logs** over OTLP → Loki, each carrying `trace_id` (log↔trace correlation)
 
-## Proof (Session A)
-One upload = nexus-api POST → JDBC → Kafka publish → (traceparent in headers) →
-nexus-ingest receive → process → `embed` (291/318ms) → pgvector upsert, all one
-trace in Tempo. See
-[lesson_11_observability.md](../../lessons/log/lesson_11_observability.md) · `[[lesson_11_observability]]`.
+## Proof
+- Trace: one upload = POST → JDBC → publish → (traceparent in Kafka headers) →
+  receive → process → `embed` → upsert, all one trace in Tempo.
+- Metrics: `nexus_documents_ingested_total`=3, embed-duration histogram p95≈462ms,
+  nexus-api 277 series.
+- Logs: nexus-ingest lines in Loki tagged with `trace_id`. See
+  [lesson_11_observability.md](../../lessons/log/lesson_11_observability.md) · `[[lesson_11_observability]]`.
 
 ## References
 - [roadmap.md](../roadmap.md) · `[[roadmap]]`

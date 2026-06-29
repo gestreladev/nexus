@@ -21,9 +21,9 @@ metadata:
 | Field | Value |
 |---|---|
 | Released | `v0.9.0` tagged; `v0.4.0`–`v0.9.0` milestones closed |
-| Current lesson | **Lesson 11 — Observability** 🔄 (Phase 10, Session A ✅ tracing live) |
-| Next | **Session B** — metrics (RED) + structured logs + log↔trace correlation |
-| Active branch | `feat/phase-10-observability` (uncommitted Session A) |
+| Last lesson | **Lesson 11 — Observability** ✅ (all 3 pillars live + verified) |
+| Next lesson | **Lesson 12 — AI Integration / RAG** (Phase 11 → `v0.11.0`, `nexus-search`) |
+| Active branch | `feat/phase-10-observability` (PR #24, Sessions A+B) |
 | Open gaps | R2 retrieval-asymmetry + E1 traces-not-logs (re-surface); full-text/hybrid deferred; `/v1/health` version not wired to build metadata |
 
 ## Done
@@ -45,9 +45,10 @@ metadata:
 - ✅ Phase 9 — vector search: `document_chunks` (pgvector + HNSW), `nexus-ingest`
   pipeline (chunk→embed→upsert) + `GET /v1/search`; embedding Strategy
   (local/Voyage/fake); semantic search proven live (`v0.9.0`, tagged + released)
-- 🔄 Phase 10 — observability **Session A**: OTel tracing across both services
-  (Java agent + Python SDK), traceparent across Kafka, Grafana LGTM backend;
-  one upload verified as a single 14-span trace (`v0.10.0`)
+- ✅ Phase 10 — observability: OTel **traces + metrics + logs** across both
+  services (Java agent + Python SDK), traceparent across Kafka, Grafana LGTM
+  backend; one upload = single 14-span trace; RED metrics (p95) + logs
+  correlated by `trace_id` in Loki — all verified (`v0.10.0`)
 - ✅ Tooling — `.claude` vault (fundamentals, languages, lessons, project, infra,
   security, caching), GoF Kotlin + Python trees, PR-walkthrough standard, labels, milestones
 
@@ -56,9 +57,10 @@ metadata:
 - Phase 5: JaCoCo coverage reporting deferred
 
 ## Next action
-**Lesson 11 — Session B** (Phase 10): flip `OTEL_METRICS_EXPORTER=otlp`, build a
-RED Grafana dashboard (rate/errors/p99), structured JSON logs carrying `trace_id`,
-and log↔trace correlation in Loki/Grafana. Then milestone `v0.10.0` merge.
+Merge PR #24 (Phase 10) + tag `v0.10.0` when ready, then start **Lesson 12 — AI
+Integration / RAG** (Phase 11): `nexus-search` (Python/FastAPI) — retrieve top-k
+chunks via `/v1/search`, feed an Anthropic LLM, cite sources (RAG). Branch
+`feat/phase-11-ai`, milestone `v0.11.0`.
 
 ## Backlog (deferred)
 - Reverse proxy (nginx/Caddy) + circuit-breaker as code (Phase 8 concepts only).

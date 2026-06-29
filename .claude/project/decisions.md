@@ -39,6 +39,7 @@ Lightweight ADRs. Newest last. Each: decision, why, status.
 | 19 | Observability backend = `grafana/otel-lgtm` all-in-one (not 5 containers) | Bundles Collector+Tempo+Loki+Prometheus+Grafana; OTLP straight to it; right-sized for single-node local | ✅ |
 | 20 | `nexus-api` traced via the zero-code OTel **Java agent** (`JAVA_TOOL_OPTIONS`) | Auto-instruments Ktor/JDBC and the Kafka producer (injects `traceparent`) with no app code | ✅ |
 | 21 | Consumer **explicitly extracts** `traceparent` from Kafka headers | aiokafka auto-instrumentation's receive-span context didn't stay active through processing → spans split into a new trace; manual extract reunites them | ✅ |
+| 22 | Logs via OTel `LoggingHandler` → OTLP → Loki (not a stdout JSON formatter) | The handler attaches the active span's `trace_id` to every record → log↔trace correlation for free, same OTLP pipe as traces/metrics | ✅ |
 
 ## How to add
 Append a row with the next number. If a decision is reversed, add a new row

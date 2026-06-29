@@ -7,8 +7,9 @@ an HTTP call (Voyage) would otherwise block the asyncio event loop.
 
 import asyncio
 import logging
+import time
 
-from opentelemetry import trace
+from opentelemetry import metrics, trace
 
 from app.chunking.base import ChunkingStrategy
 from app.db import Chunk, Database
@@ -16,6 +17,11 @@ from app.embeddings.base import EmbeddingStrategy
 
 log = logging.getLogger("nexus-ingest")
 tracer = trace.get_tracer("nexus-ingest")
+# RED-style metrics for the Kafka-driven path (FastAPI gives HTTP metrics for free;
+# this path has none, so we record them explicitly).
+_meter = metrics.get_meter("nexus-ingest")
+_ingested = _meter.create_counter("nexus.documents.ingested", unit="1")
+_embed_ms = _meter.create_histogram("nexus.embed.duration", unit="ms")
 
 
 class Ingestor:
@@ -43,11 +49,14 @@ class Ingestor:
         with tracer.start_as_current_span("embed") as span:
             span.set_attribute("embed.document_id", document_id)
             span.set_attribute("embed.chunk.count", len(chunks))
+            t0 = time.perf_counter()
             vectors = await asyncio.to_thread(self._embedder.embed_documents, chunks)
+            _embed_ms.record((time.perf_counter() - t0) * 1000.0)
             span.set_attribute("embed.dim", len(vectors[0]) if vectors else 0)
         rows: list[Chunk] = [
             (i, text, vec) for i, (text, vec) in enumerate(zip(chunks, vectors, strict=True))
         ]
         written = await self._db.upsert_chunks(document_id, rows)
+        _ingested.add(1)
         log.info("embedded document %s → %d chunk(s)", document_id, written)
         return written

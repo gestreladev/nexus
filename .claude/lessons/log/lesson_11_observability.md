@@ -18,9 +18,9 @@ metadata:
 |---|---|
 | Phase | 10 — Observability |
 | Roadmap topics | monitoring, observability, telemetry, instrumentation, profiling-performance |
-| Deliverable (Session A) | Distributed tracing across all services, verified end-to-end |
+| Deliverable | All three pillars (traces + metrics + logs) across both services, verified |
 | Milestone | `v0.10.0` |
-| Status | 🔄 Session A ✅ (tracing live); Session B = metrics + structured logs |
+| Status | ✅ mastery pass — tracing + RED metrics + correlated logs live in the LGTM stack |
 
 ## Concepts taught
 - **Three pillars** — logs (what happened), metrics (how much/often), traces (the
@@ -56,9 +56,17 @@ metadata:
   POST → JDBC → Kafka publish → (across Kafka) → nexus-ingest receive → process →
   `embed` (291 of 318ms) → pgvector upsert. mypy strict + ruff + 13 tests green.
 
-## Gaps / next (Session B)
-- Metrics: flip `OTEL_METRICS_EXPORTER=otlp`; RED dashboard (rate/errors/p99).
-- Structured JSON logs carrying `trace_id`; log↔trace correlation in Grafana.
+## Built — Session B (verified)
+- **Metrics**: nexus-api agent exports JVM/HTTP via OTLP (277 series); nexus-ingest
+  `MeterProvider` + custom `nexus.documents.ingested` counter + `nexus.embed.duration`
+  histogram. Verified in Prometheus: counter=3, embed p95≈462ms, HTTP server
+  duration histogram present (RED Duration).
+- **Logs**: OTel `LoggingHandler` ships records over OTLP → Loki; each line carries
+  the active span's `trace_id` → **log↔trace correlation** confirmed in Loki.
+
+## Next (Lesson 12)
+- AI integration / RAG (`nexus-search`) — Phase 11. Optional polish: a saved
+  Grafana RED dashboard JSON; `OTEL_*` sampling for production.
 
 ## References
 - [lesson_10_search.md](lesson_10_search.md) · `[[lesson_10_search]]`

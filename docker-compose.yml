@@ -105,8 +105,8 @@ services:
       OTEL_EXPORTER_OTLP_ENDPOINT: http://lgtm:4318
       OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
       OTEL_TRACES_EXPORTER: otlp
-      OTEL_METRICS_EXPORTER: none      # flip to otlp in Session B
-      OTEL_LOGS_EXPORTER: none
+      OTEL_METRICS_EXPORTER: otlp      # Session B: JVM + HTTP server metrics
+      OTEL_LOGS_EXPORTER: otlp         # Session B: logback → OTLP logs (trace-correlated)
       OTEL_RESOURCE_ATTRIBUTES: service.namespace=nexus,deployment.environment.name=docker,service.version=0.9.0
     ports:
       - "8080:8080"
